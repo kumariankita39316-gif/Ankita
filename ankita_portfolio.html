@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankita Kumari — Digital Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --deep: #1A1209;
+    --terracotta: #C4502A;
+    --gold: #D4A853;
+    --warm-gray: #8B8070;
+    --light-warm: #EDE8DF;
+    --card-bg: #FDFAF5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(196, 80, 42, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--warm-gray); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute; top: 50%; right: -2rem;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(8rem, 18vw, 18rem);
+    font-weight: 700; opacity: 0.04;
+    line-height: 1; pointer-events: none;
+    color: var(--terracotta);
+    white-space: nowrap;
+  }
+  .hero-content { max-width: 680px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500; margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 2rem; height: 1px; background: var(--terracotta);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700; line-height: 1.05;
+    margin-bottom: 0.3rem;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--terracotta);
+  }
+  .hero-tagline {
+    font-size: 1rem; color: var(--warm-gray);
+    margin: 1.5rem 0 2.5rem;
+    max-width: 460px; line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--terracotta); color: white;
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #A83E1E; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--deep); color: var(--deep);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--deep); color: var(--cream); }
+  .hero-stats {
+    position: absolute; bottom: 3rem; right: 4rem;
+    display: flex; gap: 3rem;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--terracotta);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--warm-gray); margin-top: 0.25rem;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--terracotta); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--deep); color: var(--cream); }
+  .about .section-label { color: var(--gold); }
+  .about .section-label::before { background: var(--gold); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.8; color: rgba(245,240,232,0.75);
+    margin-bottom: 1rem;
+  }
+  .about-expertise { margin-top: 2rem; }
+  .expertise-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+  .tag {
+    padding: 0.45rem 1rem; border: 1px solid rgba(212, 168, 83, 0.3);
+    font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold);
+    border-radius: 1px;
+  }
+  .about-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .metric-box {
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(245,240,232,0.1);
+    padding: 1.5rem; border-radius: 2px;
+  }
+  .metric-box .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold);
+  }
+  .metric-box .label {
+    font-size: 0.78rem; color: rgba(245,240,232,0.5);
+    margin-top: 0.25rem; letter-spacing: 0.05em;
+  }
+  .metric-box.featured { background: var(--terracotta); border-color: var(--terracotta); }
+  .metric-box.featured .num { color: white; }
+  .metric-box.featured .label { color: rgba(255,255,255,0.7); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: var(--card-bg); border: 1px solid rgba(26,18,9,0.08);
+    padding: 2.5rem 2rem; transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .service-card:hover { transform: translateY(-4px); border-color: var(--terracotta); }
+  .service-icon {
+    width: 48px; height: 48px; background: rgba(196,80,42,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; border-radius: 2px;
+  }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--terracotta); }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; margin-bottom: 0.75rem;
+  }
+  .service-card p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.7; }
+  .service-tools {
+    margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .tool-chip {
+    font-size: 0.72rem; background: var(--light-warm);
+    padding: 0.2rem 0.6rem; color: var(--warm-gray);
+    border-radius: 1px; letter-spacing: 0.04em;
+  }
+
+  /* WORK */
+  .work { background: var(--light-warm); }
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .work-card {
+    background: var(--card-bg); overflow: hidden;
+    border: 1px solid rgba(26,18,9,0.08);
+    transition: transform 0.2s;
+  }
+  .work-card:hover { transform: translateY(-3px); }
+  .work-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
+  .work-visual {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .work-card.featured .work-visual { height: auto; min-height: 260px; }
+  .bg-terracotta { background: var(--terracotta); color: white; }
+  .bg-deep { background: var(--deep); color: var(--gold); }
+  .bg-gold { background: var(--gold); color: var(--deep); }
+  .bg-warm { background: #8B6F47; color: var(--cream); }
+  .bg-sage { background: #5A6B57; color: #D4E8D0; }
+  .work-info { padding: 1.5rem 1.75rem 1.75rem; }
+  .work-category {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 0.4rem;
+  }
+  .work-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .work-info p { font-size: 0.85rem; color: var(--warm-gray); line-height: 1.6; }
+  .work-result {
+    margin-top: 1rem; padding: 0.75rem 1rem;
+    background: rgba(196,80,42,0.07); border-left: 2px solid var(--terracotta);
+    font-size: 0.82rem; color: var(--terracotta); font-weight: 500;
+  }
+
+  /* SKILLS */
+  .skills-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; }
+  .skill-group { margin-bottom: 2.5rem; }
+  .skill-group-title {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-gray); margin-bottom: 1rem;
+  }
+  .skill-bar { margin-bottom: 1rem; }
+  .skill-name { font-size: 0.88rem; margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+  .skill-name span { color: var(--warm-gray); font-size: 0.8rem; }
+  .bar-track { height: 3px; background: rgba(26,18,9,0.1); border-radius: 1px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--terracotta); border-radius: 1px; transition: width 1.5s ease; }
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .tool-card {
+    background: var(--card-bg); border: 1px solid rgba(26,18,9,0.08);
+    padding: 1.25rem; text-align: center; transition: border-color 0.2s;
+  }
+  .tool-card:hover { border-color: var(--terracotta); }
+  .tool-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .tool-card-name { font-size: 0.82rem; font-weight: 500; }
+  .tool-card-type { font-size: 0.72rem; color: var(--warm-gray); margin-top: 0.2rem; }
+
+  /* CONTACT */
+  .contact { background: var(--deep); color: var(--cream); text-align: center; }
+  .contact .section-title { color: var(--cream); }
+  .contact-sub { font-size: 1rem; color: rgba(245,240,232,0.6); margin-bottom: 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 2rem; border: 1px solid rgba(245,240,232,0.2);
+    color: var(--cream); text-decoration: none; font-size: 0.88rem;
+    transition: all 0.2s; border-radius: 2px;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); border-top: 1px solid rgba(245,240,232,0.08);
+    padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: rgba(245,240,232,0.35);
+  }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav .nav-links { display: none; }
+    section, .hero { padding: 5rem 2rem 3rem; }
+    .hero-stats { display: none; }
+    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card.featured { grid-column: 1; display: block; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ankita Kumari</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text">DIGITAL</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Digital Marketing Executive</div>
+    <h1 class="hero-name">
+      Ankita<br><em>Kumari</em>
+    </h1>
+    <p class="hero-tagline">
+      I help e-commerce brands grow their online presence — through performance campaigns, sharp content, and websites that convert.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Brands Managed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Platforms</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <h2 class="section-title" style="color: var(--cream);">I make brands<br><em style="color: var(--gold);">findable & desirable</em></h2>
+      <p>Currently working as a Digital Marketing Executive at Blank Pages, I specialize in helping D2C and e-commerce brands build a strong digital footprint — from ads that perform to websites that work.</p>
+      <p>My background spans social media management, paid campaigns (Google & Meta), SEO, and CMS development across WordPress, Shopify, and Wix.</p>
+      <div class="about-expertise">
+        <div style="font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-bottom: 0.75rem;">Core Expertise</div>
+        <div class="expertise-tags">
+          <span class="tag">Social Media Marketing</span>
+          <span class="tag">Google & Meta Ads</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Shopify</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">Content Strategy</span>
+          <span class="tag">Campaign Analytics</span>
+          <span class="tag">E-commerce</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual fade-up">
+      <div class="metric-box featured">
+        <div class="num">8+</div>
+        <div class="label">Brands managed across categories including jewellery, fashion, fragrance & food</div>
+      </div>
+      <div class="metric-box">
+        <div class="num">3</div>
+        <div class="label">CMS platforms: WordPress, Shopify, Wix</div>
+      </div>
+      <div class="metric-box">
+        <div class="num">Meta</div>
+        <div class="label">& Google Ads campaigns planned & executed</div>
+      </div>
+      <div class="metric-box">
+        <div class="num">GA4</div>
+        <div class="label">Performance analysis & data-driven reporting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title">Services</h2>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 11l5-5m0 0l5 5m-5-5v12" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Performance Ads</h3>
+      <p>Google Search, Display, and Meta (Facebook/Instagram) campaigns — from strategy and creative briefing to execution and optimization.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Google Ads</span>
+        <span class="tool-chip">Meta Business Manager</span>
+        <span class="tool-chip">GA4</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Website Development</h3>
+      <p>Build and manage e-commerce and brand websites on Shopify, WordPress, and Wix — including product pages, landing pages, and ongoing updates.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Shopify</span>
+        <span class="tool-chip">WordPress</span>
+        <span class="tool-chip">Wix</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Social Media Management</h3>
+      <p>End-to-end management of Instagram and Facebook pages — content calendars, graphic creation, reels, and community engagement.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Canva</span>
+        <span class="tool-chip">Adobe Tools</span>
+        <span class="tool-chip">Content Planning</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+      </div>
+      <h3>SEO & Content</h3>
+      <p>Keyword research, on-page optimization, and SEO-focused blog writing to improve organic search rankings and drive qualified traffic.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Keyword Research</span>
+        <span class="tool-chip">Blog Writing</span>
+        <span class="tool-chip">On-Page SEO</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3h18v18H3zM3 9h18M9 21V9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Campaign Analytics</h3>
+      <p>Performance tracking and reporting using GA4 and platform dashboards — turning data into actionable decisions for better ROI.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Google Analytics 4</span>
+        <span class="tool-chip">Meta Insights</span>
+        <span class="tool-chip">Reporting</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-linecap="round"/></svg>
+      </div>
+      <h3>E-commerce Marketing</h3>
+      <p>Full-funnel marketing strategy for online stores — from awareness ads to retargeting, conversion rate optimization, and retention.</p>
+      <div class="service-tools">
+        <span class="tool-chip">Funnel Strategy</span>
+        <span class="tool-chip">Retargeting</span>
+        <span class="tool-chip">CRO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="work-grid">
+    <div class="work-card featured fade-up">
+      <div class="work-visual bg-terracotta">Rugcult</div>
+      <div class="work-info">
+        <div class="work-category">E-commerce · Web + Social + Ads</div>
+        <h3>Rugcult — Complete Digital Presence</h3>
+        <p>Managed the full digital stack for a rug brand — built and maintained the Shopify website, ran Meta and Google ad campaigns, and handled Instagram content and community management.</p>
+        <div class="work-result">↑ Website traffic growth through paid + organic channels combined</div>
+      </div>
+    </div>
+
+    <div class="work-card fade-up">
+      <div class="work-visual bg-deep">MF</div>
+      <div class="work-info">
+        <div class="work-category">Fragrance · Social Media</div>
+        <h3>Majesty Fusion</h3>
+        <p>Social media management and marketing for a perfume brand — content creation, reels, and ad campaigns targeting fragrance buyers.</p>
+        <div class="work-result">Ongoing brand growth via Instagram & Meta Ads</div>
+      </div>
+    </div>
+
+    <div class="work-card fade-up">
+      <div class="work-visual bg-gold">SJ</div>
+      <div class="work-info">
+        <div class="work-category">Jewellery · Web + Social</div>
+        <h3>Shumara Jewels</h3>
+        <p>Website management and Instagram content strategy for a jewellery brand targeting women shoppers across India.</p>
+        <div class="work-result">Consistent content calendar with visual brand identity</div>
+      </div>
+    </div>
+
+    <div class="work-card fade-up">
+      <div class="work-visual bg-warm">Apidear</div>
+      <div class="work-info">
+        <div class="work-category">Food & Wellness · Web + Social</div>
+        <h3>Apidear Honey</h3>
+        <p>Built and managed the website alongside organic social media content for a premium honey brand focusing on health-conscious consumers.</p>
+        <div class="work-result">Website + social presence built from ground up</div>
+      </div>
+    </div>
+
+    <div class="work-card fade-up">
+      <div class="work-visual bg-sage" style="font-size: 1.8rem;">Blank<br>Pages</div>
+      <div class="work-info">
+        <div class="work-category">Agency · Multi-channel</div>
+        <h3>Blank Pages (Current Role)</h3>
+        <p>Full-service digital marketing execution for an agency managing multiple e-commerce clients — campaigns, social, SEO, and website management.</p>
+        <div class="work-result">Managing 5+ client accounts simultaneously</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-layout">
+    <div class="fade-up">
+      <div class="skill-group">
+        <div class="skill-group-title">Marketing</div>
+        <div class="skill-bar">
+          <div class="skill-name">Social Media Marketing <span>Advanced</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">Meta Ads (Facebook/Instagram) <span>Intermediate</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">Google Ads <span>Intermediate</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">SEO <span>Intermediate</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 68%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">Content & Blog Writing <span>Advanced</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 85%"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Web & Development</div>
+        <div class="skill-bar">
+          <div class="skill-name">Shopify <span>Advanced</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">WordPress <span>Advanced</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 82%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-name">Wix <span>Intermediate</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 72%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up">
+      <div class="skill-group-title" style="margin-bottom: 1rem;">Tools & Software</div>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-card-icon">📊</div>
+          <div class="tool-card-name">Google Analytics 4</div>
+          <div class="tool-card-type">Analytics</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">📣</div>
+          <div class="tool-card-name">Meta Business Manager</div>
+          <div class="tool-card-type">Paid Social</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🔍</div>
+          <div class="tool-card-name">Google Ads</div>
+          <div class="tool-card-type">Paid Search</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🎨</div>
+          <div class="tool-card-name">Canva</div>
+          <div class="tool-card-type">Design</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🖌️</div>
+          <div class="tool-card-name">Adobe Suite</div>
+          <div class="tool-card-type">Design</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🤖</div>
+          <div class="tool-card-name">AI Content Tools</div>
+          <div class="tool-card-type">Productivity</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🔑</div>
+          <div class="tool-card-name">Keyword Research Tools</div>
+          <div class="tool-card-type">SEO</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">🛍️</div>
+          <div class="tool-card-name">Shopify Admin</div>
+          <div class="tool-card-type">E-commerce</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-card-icon">📝</div>
+          <div class="tool-card-name">WordPress</div>
+          <div class="tool-card-type">CMS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label" style="justify-content: center; color: var(--gold);">
+    <span style="background: var(--gold); width: 1.5rem; height: 1px; display: inline-block;"></span>
+    Get In Touch
+  </div>
+  <h2 class="section-title">Let's work<br><em style="color: var(--gold);">together</em></h2>
+  <p class="contact-sub">Open to full-time roles, freelance projects, and consulting.<br>I work with e-commerce and D2C brands across categories.</p>
+  <div class="contact-links">
+    <a href="mailto:kumari.ankita39316@gmail.com" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      kumari.ankita39316@gmail.com
+    </a>
+    <a href="#" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="#" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Ankita Kumari</span>
+  <span>Digital Marketing Executive · Delhi</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const fills = document.querySelectorAll('.bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.style.width;
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(f => { const w = f.style.width; f.style.width = '0'; setTimeout(() => f.style.width = w, 300); barObserver.observe(f); });
+</script>
+</body>
+</html>
