@@ -164,31 +164,50 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 }
 .sub-item:hover .sub-price{opacity:1;transform:translateX(0)}
 
+/* MOBILE MENU */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;background:var(--deep);border-radius:2px;
+  transition:transform .3s,opacity .3s;transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* mobile drawer */
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:290;
+  background:rgba(245,240,232,.98);backdrop-filter:blur(16px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  text-decoration:none;color:var(--deep);letter-spacing:.02em;
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--terracotta)}
+.mobile-menu-cta{
+  margin-top:1rem;background:var(--terracotta);color:white !important;
+  padding:.75rem 2.5rem;border-radius:2px;font-family:'DM Sans',sans-serif !important;
+  font-size:.85rem !important;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+}
+
 /* WORK */
 .work{background:var(--light-warm)}
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
 .work-card{background:var(--card-bg);overflow:hidden;border:1px solid rgba(26,18,9,.08);transition:transform .2s}
 .work-card:hover{transform:translateY(-3px)}
 .work-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
-/* Banner — holds the logo */
 .work-visual{
   height:200px;display:flex;align-items:center;justify-content:center;
   font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
-  letter-spacing:-.02em;flex-direction:column;gap:.25rem;position:relative;overflow:hidden;
+  letter-spacing:-.02em;flex-direction:column;gap:.25rem;
 }
 .work-card.featured .work-visual{height:auto;min-height:260px}
-/* Brand logo inside banner */
-.brand-logo{
-  max-width:60%;max-height:55%;object-fit:contain;
-  filter:brightness(0) invert(1);/* white-ify logos */
-  opacity:.92;
-  position:relative;z-index:1;
-}
-/* fallback label behind logo */
-.brand-fallback{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;opacity:.18;
-}
 .bg-tc{background:var(--terracotta);color:white}
 .bg-dp{background:var(--deep);color:var(--gold)}
 .bg-gd{background:var(--gold);color:var(--deep)}
@@ -200,10 +219,6 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 .bg-in{background:#3D4B8A;color:#C5CAE9}
 .bg-ol{background:#5C6B2E;color:#E8F5C2}
 .bg-mt{background:#6B6560;color:#EDE8DF}
-/* Apidear logo sits on gold — keep it dark */
-.bg-gd .brand-logo{filter:brightness(0);opacity:.75}
-/* Koed logo on olive — keep white */
-.bg-ol .brand-logo{filter:brightness(0) invert(1);opacity:.9}
 .work-info{padding:1.5rem 1.75rem 1.75rem}
 .work-category{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:.4rem}
 .work-info h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.5rem}
@@ -353,10 +368,12 @@ footer{
 @media(max-width:900px){
   nav{padding:1rem 1.2rem;gap:.6rem}
   .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
   /* search stays right-aligned */
-  .nav-search{margin-left:auto}
-  .nav-search input{width:130px}
-  .nav-search input:focus{width:155px}
+  .nav-search{margin-left:0}
+  .nav-search input{width:120px}
+  .nav-search input:focus{width:150px}
   section,.hero{padding:5rem 1.2rem 3rem}
   .hero-stats{display:none}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
@@ -445,6 +462,16 @@ footer{
   </div>
 </div>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#work" onclick="closeMobileMenu()">Work</a>
+  <a href="#tools" onclick="closeMobileMenu()">Tools</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <a href="#contact" class="mobile-menu-cta" onclick="closeMobileMenu();openModal()">Get In Touch</a>
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Ankita Kumari</div>
@@ -461,6 +488,9 @@ footer{
     <input type="text" id="searchInput" placeholder="Search…" autocomplete="off" oninput="doSearch(this.value)" onfocus="doSearch(this.value)" />
     <div class="search-dropdown" id="searchDropdown"></div>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -605,10 +635,7 @@ footer{
 
     <!-- Rugcult FEATURED -->
     <div class="work-card featured fade-up">
-      <div class="work-visual bg-tc">
-        <div class="brand-fallback">Rugcult</div>
-        <img class="brand-logo" src="https://rugcult.com/cdn/shop/files/RUG_CULT_3.png?v=1769065306&width=225" alt="Rugcult" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-tc">Rugcult</div>
       <div class="work-info">
         <div class="work-category">Rugs · E-commerce</div>
         <h3>Rugcult</h3>
@@ -623,10 +650,7 @@ footer{
 
     <!-- Majesty Fusion -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-dp">
-        <div class="brand-fallback">MF</div>
-        <img class="brand-logo" src="https://majestyfusion.com/cdn/shop/files/logo_transparent.png?v=1772777066&width=600" alt="Majesty Fusion" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-dp">MF</div>
       <div class="work-info">
         <div class="work-category">Perfume · Website + Social + Ads</div>
         <h3>Majesty Fusion</h3>
@@ -641,10 +665,7 @@ footer{
 
     <!-- Apidear -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-gd">
-        <div class="brand-fallback">Apidear</div>
-        <img class="brand-logo" src="https://instagram.fdel93-1.fna.fbcdn.net/v/t51.2885-19/476076757_1907908076281877_7787882987896743868_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuZXhwZXJpbWVudGFsIn0&_nc_ht=instagram.fdel93-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2gF5KQPjU2SYTUw7cPAKKbtlcBYiThHpaxtTMWcLyZr7q3Bm69IV0l5C8GcfxGoiRf0_B5DqJ9EZfTVkpUJBtPKx&_nc_ohc=Kp9tiNKnjFIQ7kNvwHCMugR&_nc_gid=WBoOi0anSP2AUwqbTWF4eg&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_Af6OqJwh4OCmAFax0yxyNgyxjdK3FOgZeuzcfcZN1baowA&oe=6A04DEF6&_nc_sid=7a9f4b" alt="Apidear" style="border-radius:50%;max-width:80px;max-height:80px;filter:none;opacity:1;" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-gd">Apidear</div>
       <div class="work-info">
         <div class="work-category">Honey · Web + Social + SEO + Ads</div>
         <h3>Apidear Honey</h3>
@@ -658,10 +679,7 @@ footer{
 
     <!-- Indra Sugandh -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-rs">
-        <div class="brand-fallback">Indra Sugandh</div>
-        <img class="brand-logo" src="https://indrasugandh.com/cdn/shop/files/Indra_Sugandh_Bhandar_Logo1_321d392c-59c5-4d6f-beb3-5765bae81886.png?v=1662745449" alt="Indra Sugandh" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-rs" style="font-size:1.5rem;">Indra<br>Sugandh</div>
       <div class="work-info">
         <div class="work-category">Fragrance · Website + Social + Ads</div>
         <h3>Indra Sugandh Bhandar</h3>
@@ -676,10 +694,7 @@ footer{
 
     <!-- Tokyo Sole -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-sl">
-        <div class="brand-fallback">Tokyo Sole</div>
-        <img class="brand-logo" src="https://tokyosole.com/cdn/shop/files/Untitled_design_2.png?height=200&v=1767269088" alt="Tokyo Sole" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-sl" style="font-size:1.5rem;">Tokyo<br>Sole</div>
       <div class="work-info">
         <div class="work-category">Shoes · Website + Social + Ads</div>
         <h3>Tokyo Sole</h3>
@@ -694,10 +709,7 @@ footer{
 
     <!-- Furnishing Touch -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-wm">
-        <div class="brand-fallback">Furnishing Touch</div>
-        <img class="brand-logo" src="https://instagram.fdel11-4.fna.fbcdn.net/v/t51.2885-19/166074755_205047774727598_1729751115314252595_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fdel11-4.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gHhhCyBVlKwAuZ5to9dRrJs6uo_Ef-YgFsEuHqQIvrmdh2mSxHpdsz8cwA8M4g0OVUJhpDrQ-5q4Iv0w2LJGaFI&_nc_ohc=ANhua3tXZ8EQ7kNvwHcpxbv&_nc_gid=w41zlJ5YWM-aBS-smHbTWw&edm=AHzjunoBAAAA&ccb=7-5&oh=00_Af7_qQccfRyT62CtFgB05L1AJDboQouSWYGq_k1XS--f1Q&oe=6A04D73D&_nc_sid=ba8368" alt="Furnishing Touch" style="border-radius:50%;max-width:80px;max-height:80px;filter:brightness(0) invert(1);opacity:.9;" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-wm" style="font-size:1.4rem;">Furnishing<br>Touch</div>
       <div class="work-info">
         <div class="work-category">Furnishing · B2B &amp; B2C</div>
         <h3>Furnishing Touch</h3>
@@ -711,10 +723,7 @@ footer{
 
     <!-- Halxi -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-tl">
-        <div class="brand-fallback">Halxi</div>
-        <img class="brand-logo" src="https://halxi.com/wp-content/uploads/elementor/thumbs/halxi-png-rn3h8f61anydw8k0yavlghzgt6kqa2a3ibxut7qvja.png" alt="Halxi" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-tl">Halxi</div>
       <div class="work-info">
         <div class="work-category">Website Development</div>
         <h3>Halxi</h3>
@@ -728,10 +737,7 @@ footer{
 
     <!-- Merak Home -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-in">
-        <div class="brand-fallback">Merak Home</div>
-        <img class="brand-logo" src="https://merakhome.in/wp-content/uploads/2025/09/Untitled_design__34_-removebg-preview.png" alt="Merak Home" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-in" style="font-size:1.4rem;">Merak<br>Home</div>
       <div class="work-info">
         <div class="work-category">Bedsheets · Social Media + Ads</div>
         <h3>Merak Home Furnishing</h3>
@@ -745,10 +751,7 @@ footer{
 
     <!-- Koed -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-ol">
-        <div class="brand-fallback">Koed</div>
-        <img class="brand-logo" src="https://unibarton.com/wp-content/uploads/al_opt_content/IMAGE/unibarton.com/wp-content/uploads/2025/12/Untitled-566-x-212-px.png.bv.webp?bv_host=unibarton.com" alt="Koed" onerror="this.style.display='none'">
-      </div>
+      <div class="work-visual bg-ol">Koed</div>
       <div class="work-info">
         <div class="work-category">Education · Ads + Script Writing</div>
         <h3>Koed — University / PhD Education</h3>
@@ -857,6 +860,23 @@ const obs = new IntersectionObserver(entries => {
 }, {threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
+// ── MOBILE MENU ──
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  if(isOpen){ closeMobileMenu(); } else {
+    menu.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+}
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 // ── CONTACT MODAL ──
 let formSubmitted = false;
 function openModal() {
@@ -890,7 +910,7 @@ document.getElementById('contactModal').addEventListener('click', function(e){ i
 function openPhoneModal(){ document.getElementById('phoneModal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closePhoneModal(){ document.getElementById('phoneModal').classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('phoneModal').addEventListener('click', function(e){ if(e.target===this) closePhoneModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closePhoneModal();} });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closePhoneModal();closeMobileMenu();} });
 
 // ── SEARCH ──
 const searchIndex = [
