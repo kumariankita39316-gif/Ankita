@@ -27,8 +27,8 @@ nav{
 .nav-links{display:flex;gap:2rem;flex-shrink:0}
 .nav-links a{font-size:0.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--warm-gray);transition:color .2s}
 .nav-links a:hover{color:var(--terracotta)}
-/* search */
-.nav-search{position:relative;flex-shrink:0}
+/* search — always on the right */
+.nav-search{position:relative;flex-shrink:0;margin-left:auto}
 .nav-search-icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--warm-gray);pointer-events:none}
 .nav-search input{
   padding:.45rem .9rem .45rem 2.1rem;border:1px solid rgba(26,18,9,.15);border-radius:20px;
@@ -127,19 +127,20 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 .metric-box.featured .num{color:white}
 .metric-box.featured .label{color:rgba(255,255,255,.7)}
 
-/* SERVICES */
+/* SERVICES — fixed overflow */
 .services-hint{font-size:.82rem;color:var(--warm-gray);margin-bottom:2rem;margin-top:-1.5rem;display:flex;align-items:center;gap:.5rem}
 .services-hint::before{content:'✦';color:var(--terracotta);font-size:.7rem}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;width:100%}
 .service-card{
   background:var(--card-bg);border:1px solid rgba(26,18,9,.08);
   padding:2.5rem 2rem;transition:transform .2s,border-color .2s,box-shadow .2s;cursor:pointer;
+  min-width:0;/* prevent overflow */
 }
 .service-card:hover{transform:translateY(-4px);border-color:var(--terracotta);box-shadow:0 8px 32px rgba(196,80,42,.1)}
 .service-icon{
   width:48px;height:48px;background:rgba(196,80,42,.1);
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:1.5rem;border-radius:2px;transition:background .2s;
+  margin-bottom:1.5rem;border-radius:2px;transition:background .2s;flex-shrink:0;
 }
 .service-card:hover .service-icon{background:rgba(196,80,42,.18)}
 .service-icon svg{width:22px;height:22px;stroke:var(--terracotta)}
@@ -151,9 +152,10 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
   display:flex;align-items:center;justify-content:space-between;
   padding:.55rem .75rem;border:1px solid rgba(26,18,9,.07);border-radius:2px;
   cursor:pointer;transition:background .18s,border-color .18s;background:transparent;
+  gap:.5rem;
 }
 .sub-item:hover{background:rgba(196,80,42,.05);border-color:rgba(196,80,42,.3)}
-.sub-item-name{font-size:.8rem;color:var(--deep);display:flex;align-items:center;gap:.4rem}
+.sub-item-name{font-size:.8rem;color:var(--deep);display:flex;align-items:center;gap:.4rem;flex-shrink:0}
 .sub-item-name::before{content:'›';color:var(--terracotta);font-size:1rem}
 .sub-price{
   font-size:.78rem;font-weight:600;color:var(--terracotta);
@@ -168,12 +170,25 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 .work-card{background:var(--card-bg);overflow:hidden;border:1px solid rgba(26,18,9,.08);transition:transform .2s}
 .work-card:hover{transform:translateY(-3px)}
 .work-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+/* Banner — holds the logo */
 .work-visual{
   height:200px;display:flex;align-items:center;justify-content:center;
   font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
-  letter-spacing:-.02em;flex-direction:column;gap:.25rem;
+  letter-spacing:-.02em;flex-direction:column;gap:.25rem;position:relative;overflow:hidden;
 }
 .work-card.featured .work-visual{height:auto;min-height:260px}
+/* Brand logo inside banner */
+.brand-logo{
+  max-width:60%;max-height:55%;object-fit:contain;
+  filter:brightness(0) invert(1);/* white-ify logos */
+  opacity:.92;
+  position:relative;z-index:1;
+}
+/* fallback label behind logo */
+.brand-fallback{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;opacity:.18;
+}
 .bg-tc{background:var(--terracotta);color:white}
 .bg-dp{background:var(--deep);color:var(--gold)}
 .bg-gd{background:var(--gold);color:var(--deep)}
@@ -185,6 +200,10 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 .bg-in{background:#3D4B8A;color:#C5CAE9}
 .bg-ol{background:#5C6B2E;color:#E8F5C2}
 .bg-mt{background:#6B6560;color:#EDE8DF}
+/* Apidear logo sits on gold — keep it dark */
+.bg-gd .brand-logo{filter:brightness(0);opacity:.75}
+/* Koed logo on olive — keep white */
+.bg-ol .brand-logo{filter:brightness(0) invert(1);opacity:.9}
 .work-info{padding:1.5rem 1.75rem 1.75rem}
 .work-category{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:.4rem}
 .work-info h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.5rem}
@@ -284,7 +303,6 @@ footer{
   cursor:pointer;transition:background .2s,transform .15s;
 }
 .modal-submit:hover{background:#A83E1E;transform:translateY(-1px)}
-/* success */
 .success-icon{font-size:3rem;margin-bottom:1rem}
 .success-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
 .success-title em{color:var(--terracotta);font-style:italic}
@@ -333,20 +351,30 @@ footer{
 /* RESPONSIVE */
 @media(max-width:1100px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
-  nav{padding:1rem 1.5rem;flex-wrap:wrap;gap:.75rem}
+  nav{padding:1rem 1.2rem;gap:.6rem}
   .nav-links{display:none}
-  .nav-search input{width:140px}
-  .nav-search input:focus{width:160px}
-  section,.hero{padding:5rem 1.5rem 3rem}
+  /* search stays right-aligned */
+  .nav-search{margin-left:auto}
+  .nav-search input{width:130px}
+  .nav-search input:focus{width:155px}
+  section,.hero{padding:5rem 1.2rem 3rem}
   .hero-stats{display:none}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
-  .services-grid{grid-template-columns:1fr}
+  /* services: single column on mobile, no overflow */
+  .services-grid{grid-template-columns:1fr;overflow:visible}
+  .service-card{width:100%}
   .work-grid{grid-template-columns:1fr}
   .work-card.featured{grid-column:1;display:block}
+  .work-card.featured .work-visual{min-height:180px}
   .tools-grid{grid-template-columns:repeat(2,1fr)}
   footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.2rem 1.5rem}
   .hero-bg-text{display:none}
   .about-visual{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .nav-search input{width:110px}
+  .nav-search input:focus{width:130px}
+  section,.hero{padding:5rem 1rem 2.5rem}
 }
 </style>
 </head>
@@ -409,7 +437,7 @@ footer{
     <div class="phone-wave">👋</div>
     <div class="phone-greeting">Hi, I'm <em>Ankita!</em></div>
     <p class="phone-sub">I'd love to hear about your brand. Call or WhatsApp me directly.</p>
-    <a href="tel:+918920528928" class="phone-number">+91 89205 28928 </a>
+    <a href="tel:+918920528928" class="phone-number">+91 89205 28928</a>
     <a href="https://wa.me/918920528928" class="phone-cta" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp Me
@@ -427,6 +455,7 @@ footer{
     <a href="#tools">Tools</a>
     <a href="#contact">Contact</a>
   </div>
+  <!-- search is always last = rightmost -->
   <div class="nav-search">
     <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
     <input type="text" id="searchInput" placeholder="Search…" autocomplete="off" oninput="doSearch(this.value)" onfocus="doSearch(this.value)" />
@@ -471,7 +500,7 @@ footer{
           <span class="tag">SEO</span>
           <span class="tag">Shopify</span>
           <span class="tag">WordPress</span>
-          <span class="tag">Social Media Mangement</span>
+          <span class="tag">Social Media Management</span>
           <span class="tag">Campaign Analytics</span>
           <span class="tag">Script Writing</span>
           <span class="tag">Graphics</span>
@@ -491,6 +520,7 @@ footer{
 <section id="services">
   <div class="section-label">What I Do</div>
   <h2 class="section-title">Services</h2>
+  <p class="services-hint">Hover over any sub-service to reveal pricing</p>
   <div class="services-grid">
 
     <div class="service-card fade-up">
@@ -575,7 +605,10 @@ footer{
 
     <!-- Rugcult FEATURED -->
     <div class="work-card featured fade-up">
-      <div class="work-visual bg-tc">Rugcult</div>
+      <div class="work-visual bg-tc">
+        <div class="brand-fallback">Rugcult</div>
+        <img class="brand-logo" src="https://rugcult.com/cdn/shop/files/RUG_CULT_3.png?v=1769065306&width=225" alt="Rugcult" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Rugs · E-commerce</div>
         <h3>Rugcult</h3>
@@ -590,7 +623,10 @@ footer{
 
     <!-- Majesty Fusion -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-dp">MF</div>
+      <div class="work-visual bg-dp">
+        <div class="brand-fallback">MF</div>
+        <img class="brand-logo" src="https://majestyfusion.com/cdn/shop/files/logo_transparent.png?v=1772777066&width=600" alt="Majesty Fusion" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Perfume · Website + Social + Ads</div>
         <h3>Majesty Fusion</h3>
@@ -605,7 +641,10 @@ footer{
 
     <!-- Apidear -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-gd">Apidear</div>
+      <div class="work-visual bg-gd">
+        <div class="brand-fallback">Apidear</div>
+        <img class="brand-logo" src="https://instagram.fdel93-1.fna.fbcdn.net/v/t51.2885-19/476076757_1907908076281877_7787882987896743868_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuZXhwZXJpbWVudGFsIn0&_nc_ht=instagram.fdel93-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2gF5KQPjU2SYTUw7cPAKKbtlcBYiThHpaxtTMWcLyZr7q3Bm69IV0l5C8GcfxGoiRf0_B5DqJ9EZfTVkpUJBtPKx&_nc_ohc=Kp9tiNKnjFIQ7kNvwHCMugR&_nc_gid=WBoOi0anSP2AUwqbTWF4eg&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_Af6OqJwh4OCmAFax0yxyNgyxjdK3FOgZeuzcfcZN1baowA&oe=6A04DEF6&_nc_sid=7a9f4b" alt="Apidear" style="border-radius:50%;max-width:80px;max-height:80px;filter:none;opacity:1;" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Honey · Web + Social + SEO + Ads</div>
         <h3>Apidear Honey</h3>
@@ -619,7 +658,10 @@ footer{
 
     <!-- Indra Sugandh -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-rs" style="font-size:1.5rem;">Indra<br>Sugandh</div>
+      <div class="work-visual bg-rs">
+        <div class="brand-fallback">Indra Sugandh</div>
+        <img class="brand-logo" src="https://indrasugandh.com/cdn/shop/files/Indra_Sugandh_Bhandar_Logo1_321d392c-59c5-4d6f-beb3-5765bae81886.png?v=1662745449" alt="Indra Sugandh" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Fragrance · Website + Social + Ads</div>
         <h3>Indra Sugandh Bhandar</h3>
@@ -634,7 +676,10 @@ footer{
 
     <!-- Tokyo Sole -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-sl" style="font-size:1.5rem;">Tokyo<br>Sole</div>
+      <div class="work-visual bg-sl">
+        <div class="brand-fallback">Tokyo Sole</div>
+        <img class="brand-logo" src="https://tokyosole.com/cdn/shop/files/Untitled_design_2.png?height=200&v=1767269088" alt="Tokyo Sole" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Shoes · Website + Social + Ads</div>
         <h3>Tokyo Sole</h3>
@@ -649,7 +694,10 @@ footer{
 
     <!-- Furnishing Touch -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-wm" style="font-size:1.4rem;">Furnishing<br>Touch</div>
+      <div class="work-visual bg-wm">
+        <div class="brand-fallback">Furnishing Touch</div>
+        <img class="brand-logo" src="https://instagram.fdel11-4.fna.fbcdn.net/v/t51.2885-19/166074755_205047774727598_1729751115314252595_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fdel11-4.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2gHhhCyBVlKwAuZ5to9dRrJs6uo_Ef-YgFsEuHqQIvrmdh2mSxHpdsz8cwA8M4g0OVUJhpDrQ-5q4Iv0w2LJGaFI&_nc_ohc=ANhua3tXZ8EQ7kNvwHcpxbv&_nc_gid=w41zlJ5YWM-aBS-smHbTWw&edm=AHzjunoBAAAA&ccb=7-5&oh=00_Af7_qQccfRyT62CtFgB05L1AJDboQouSWYGq_k1XS--f1Q&oe=6A04D73D&_nc_sid=ba8368" alt="Furnishing Touch" style="border-radius:50%;max-width:80px;max-height:80px;filter:brightness(0) invert(1);opacity:.9;" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Furnishing · B2B &amp; B2C</div>
         <h3>Furnishing Touch</h3>
@@ -663,7 +711,10 @@ footer{
 
     <!-- Halxi -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-tl">Halxi</div>
+      <div class="work-visual bg-tl">
+        <div class="brand-fallback">Halxi</div>
+        <img class="brand-logo" src="https://halxi.com/wp-content/uploads/elementor/thumbs/halxi-png-rn3h8f61anydw8k0yavlghzgt6kqa2a3ibxut7qvja.png" alt="Halxi" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Website Development</div>
         <h3>Halxi</h3>
@@ -677,7 +728,10 @@ footer{
 
     <!-- Merak Home -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-in" style="font-size:1.4rem;">Merak<br>Home</div>
+      <div class="work-visual bg-in">
+        <div class="brand-fallback">Merak Home</div>
+        <img class="brand-logo" src="https://merakhome.in/wp-content/uploads/2025/09/Untitled_design__34_-removebg-preview.png" alt="Merak Home" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Bedsheets · Social Media + Ads</div>
         <h3>Merak Home Furnishing</h3>
@@ -691,30 +745,15 @@ footer{
 
     <!-- Koed -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-ol">Koed</div>
+      <div class="work-visual bg-ol">
+        <div class="brand-fallback">Koed</div>
+        <img class="brand-logo" src="https://unibarton.com/wp-content/uploads/al_opt_content/IMAGE/unibarton.com/wp-content/uploads/2025/12/Untitled-566-x-212-px.png.bv.webp?bv_host=unibarton.com" alt="Koed" onerror="this.style.display='none'">
+      </div>
       <div class="work-info">
         <div class="work-category">Education · Ads + Script Writing</div>
         <h3>Koed — University / PhD Education</h3>
         <p>Ad campaigns and script writing for an education platform targeting university and PhD aspirants.</p>
         <div class="work-result">Ads + Script Writing</div>
-      </div>
-    </div>
-
-    <!-- Inactive Websites grouped -->
-    <div class="work-card fade-up">
-      <div class="work-visual bg-mt" style="font-size:1.1rem;flex-direction:column;gap:.4rem;">
-        <span>Shumara Jewels</span>
-        <span style="font-size:.85rem;opacity:.6">Svayanirah · Faxi</span>
-      </div>
-      <div class="work-info">
-        <div class="work-category">Jewellery · Perfume · Clothing</div>
-        <h3>Website Projects (Inactive)</h3>
-        <p>Website development and social media for Shumara Jewels (jewellery), Svayanirah (perfume), and Faxi (clothing). Websites delivered and currently inactive.</p>
-        <div class="inactive-badge">⚠ Websites currently inactive</div>
-        <div class="work-result">Shumara: Website + Social &nbsp;|&nbsp; Svayanirah &amp; Faxi: Website</div>
-        <div class="work-links">
-          <a href="https://www.instagram.com/shumarajewels.official/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@shumarajewels.official</a>
-        </div>
       </div>
     </div>
 
@@ -726,7 +765,6 @@ footer{
   <div class="section-label">Tech Stack</div>
   <h2 class="section-title">Tools &amp; Software</h2>
   <div class="tools-grid">
-
     <div class="tool-card">
       <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"/></div>
       <div class="tool-card-name">Shopify</div><div class="tool-card-type">E-commerce CMS</div>
@@ -775,7 +813,6 @@ footer{
       <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=64" alt="AI Tools"/></div>
       <div class="tool-card-name">AI Content Tools</div><div class="tool-card-type">Productivity</div>
     </div>
-
   </div>
 </section>
 
@@ -786,7 +823,7 @@ footer{
     Get In Touch
   </div>
   <h2 class="section-title">Let's work<br><em style="color:var(--gold);">together</em></h2>
-  <p class="contact-sub">Open for freelance projects, and contract-based projects.<br>I work with e-commerce ,B2C and B2B brands across categories.</p>
+  <p class="contact-sub">Open for freelance projects, and contract-based projects.<br>I work with e-commerce, B2C and B2B brands across categories.</p>
   <div class="contact-links">
     <a href="mailto:kumari.ankita39316@gmail.com" class="contact-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -822,11 +859,9 @@ document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
 // ── CONTACT MODAL ──
 let formSubmitted = false;
-
 function openModal() {
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
-  // if form was submitted show success; else form (already cleared)
   const box = document.getElementById('modalBox');
   if(!formSubmitted) box.classList.remove('submitted');
 }
@@ -844,7 +879,6 @@ function submitModal() {
   document.getElementById('successName').textContent = nameEl.value.trim();
   document.getElementById('modalBox').classList.add('submitted');
   formSubmitted = true;
-  // clear all fields immediately so they won't be pre-filled next time
   ['modalName','modalEmail','modalPhone','modalService','modalMsg'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
@@ -856,7 +890,6 @@ document.getElementById('contactModal').addEventListener('click', function(e){ i
 function openPhoneModal(){ document.getElementById('phoneModal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closePhoneModal(){ document.getElementById('phoneModal').classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('phoneModal').addEventListener('click', function(e){ if(e.target===this) closePhoneModal(); });
-
 document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closePhoneModal();} });
 
 // ── SEARCH ──
@@ -885,14 +918,10 @@ const searchIndex = [
   {label:'Halxi',cat:'Brand',href:'#work'},
   {label:'Merak Home Furnishing — Bedsheets',cat:'Brand',href:'#work'},
   {label:'Koed — Education',cat:'Brand',href:'#work'},
-  {label:'Shumara Jewels',cat:'Brand',href:'#work'},
-  {label:'Svayanirah — Perfume',cat:'Brand',href:'#work'},
-  {label:'Faxi — Clothing',cat:'Brand',href:'#work'},
   {label:'Email',cat:'Contact',href:'mailto:kumari.ankita39316@gmail.com'},
   {label:'Get In Touch / Message',cat:'Contact',href:'#contact'},
   {label:'Call / WhatsApp',cat:'Contact',href:'#contact'},
 ];
-
 function doSearch(q) {
   const dd = document.getElementById('searchDropdown');
   q = q.trim().toLowerCase();
