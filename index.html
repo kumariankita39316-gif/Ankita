@@ -3,467 +3,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ankita Kumari — Digital Marketing</title>
+<title>Ankita — Digital Marketer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--deep:#1A1209;--terracotta:#C4502A;--gold:#D4A853;
+  --warm-gray:#8B8070;--light-warm:#EDE8DF;--card-bg:#FDFAF5;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--deep);overflow-x:hidden;width:100%;max-width:100vw}
 
-  :root {
-    --cream: #F5F0E8;
-    --deep: #1A1209;
-    --terracotta: #C4502A;
-    --gold: #D4A853;
-    --warm-gray: #8B8070;
-    --light-warm: #EDE8DF;
-    --card-bg: #FDFAF5;
-  }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  padding:1rem 4rem;
+  background:rgba(245,240,232,0.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(196,80,42,0.15);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;flex-shrink:0}
+.nav-links{display:flex;gap:2rem;flex-shrink:0}
+.nav-links a{font-size:0.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--warm-gray);transition:color .2s}
+.nav-links a:hover{color:var(--terracotta)}
+/* search */
+.nav-search{position:relative;flex-shrink:0}
+.nav-search-icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--warm-gray);pointer-events:none}
+.nav-search input{
+  padding:.45rem .9rem .45rem 2.1rem;border:1px solid rgba(26,18,9,.15);border-radius:20px;
+  font-family:'DM Sans',sans-serif;font-size:.8rem;background:white;color:var(--deep);
+  outline:none;width:170px;transition:border-color .2s,width .3s;
+}
+.nav-search input:focus{border-color:var(--terracotta);width:210px}
+.search-dropdown{
+  display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:260px;
+  background:white;border:1px solid rgba(26,18,9,.1);border-radius:6px;
+  box-shadow:0 8px 28px rgba(26,18,9,.13);z-index:400;overflow:hidden;
+}
+.search-dropdown.open{display:block}
+.search-item{
+  display:flex;align-items:center;gap:.6rem;padding:.65rem 1rem;
+  font-size:.83rem;text-decoration:none;color:var(--deep);
+  transition:background .15s;border-bottom:1px solid rgba(26,18,9,.04);
+}
+.search-item:last-child{border-bottom:none}
+.search-item:hover{background:rgba(196,80,42,.06)}
+.search-item-cat{font-size:.7rem;color:var(--warm-gray);margin-left:auto;white-space:nowrap}
+.search-empty{padding:.85rem 1rem;font-size:.83rem;color:var(--warm-gray)}
 
-  html { scroll-behavior: smooth; }
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:8rem 4rem 4rem;position:relative;overflow:hidden;width:100%;
+}
+.hero-bg-text{
+  position:absolute;top:50%;right:-2rem;transform:translateY(-50%);
+  font-family:'Playfair Display',serif;font-size:clamp(8rem,18vw,18rem);
+  font-weight:700;opacity:.04;line-height:1;pointer-events:none;
+  color:var(--terracotta);white-space:nowrap;user-select:none;
+}
+.hero-content{max-width:680px;position:relative;z-index:1}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.75rem;
+  font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--terracotta);font-weight:500;margin-bottom:1.5rem;
+}
+.hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--terracotta)}
+.hero-name{
+  font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:700;line-height:1.05;margin-bottom:.3rem;
+}
+.hero-tagline{font-size:1rem;color:var(--warm-gray);margin:1.5rem 0 2.5rem;max-width:460px;line-height:1.7}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--terracotta);color:white;padding:.85rem 2rem;border-radius:2px;
+  font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;transition:background .2s,transform .15s;display:inline-block;
+  cursor:pointer;border:none;font-family:'DM Sans',sans-serif;
+}
+.btn-primary:hover{background:#A83E1E;transform:translateY(-1px)}
+.btn-outline{
+  border:1px solid var(--deep);color:var(--deep);padding:.85rem 2rem;border-radius:2px;
+  font-size:.82rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;transition:all .2s;display:inline-block;
+  cursor:pointer;background:none;font-family:'DM Sans',sans-serif;
+}
+.btn-outline:hover{background:var(--deep);color:var(--cream)}
+.hero-stats{position:absolute;bottom:3rem;right:4rem;display:flex;gap:3rem}
+.stat{text-align:right}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--terracotta);line-height:1}
+.stat-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-gray);margin-top:.25rem}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--deep);
-    overflow-x: hidden;
-  }
+/* SECTIONS */
+section{padding:6rem 4rem;width:100%;overflow:hidden}
+.section-label{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--terracotta);font-weight:500;margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.section-label::before{content:'';width:1.5rem;height:1px;background:var(--terracotta)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:3rem}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(245, 240, 232, 0.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(196, 80, 42, 0.15);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a {
-    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
-    text-transform: uppercase; text-decoration: none;
-    color: var(--warm-gray); transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--terracotta); }
+/* ABOUT */
+.about{background:var(--deep);color:var(--cream)}
+.about .section-label{color:var(--gold)}
+.about .section-label::before{background:var(--gold)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-text p{font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,.75);margin-bottom:1rem}
+.about-expertise{margin-top:2rem}
+.expertise-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.tag{
+  padding:.45rem 1rem;border:1px solid rgba(212,168,83,.3);
+  font-size:.78rem;letter-spacing:.06em;color:var(--gold);border-radius:1px;
+  cursor:default;transition:background .22s,color .22s,border-color .22s,transform .18s,box-shadow .18s;
+}
+.tag:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,168,83,.25)}
+.about-visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.metric-box{background:rgba(245,240,232,.05);border:1px solid rgba(245,240,232,.1);padding:1.5rem;border-radius:2px}
+.metric-box .num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold)}
+.metric-box .label{font-size:.78rem;color:rgba(245,240,232,.5);margin-top:.25rem;letter-spacing:.05em}
+.metric-box.featured{background:var(--terracotta);border-color:var(--terracotta)}
+.metric-box.featured .num{color:white}
+.metric-box.featured .label{color:rgba(255,255,255,.7)}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg-text {
-    position: absolute; top: 50%; right: -2rem;
-    transform: translateY(-50%);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(8rem, 18vw, 18rem);
-    font-weight: 700; opacity: 0.04;
-    line-height: 1; pointer-events: none;
-    color: var(--terracotta);
-    white-space: nowrap;
-  }
-  .hero-content { max-width: 680px; }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--terracotta); font-weight: 500; margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before {
-    content: ''; width: 2rem; height: 1px; background: var(--terracotta);
-  }
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    font-weight: 700; line-height: 1.05;
-    margin-bottom: 0.3rem;
-  }
-  .hero-name em { font-style: italic; color: var(--terracotta); }
-  .hero-tagline {
-    font-size: 1rem; color: var(--warm-gray);
-    margin: 1.5rem 0 2.5rem;
-    max-width: 460px; line-height: 1.7;
-  }
-  .hero-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--terracotta); color: white;
-    padding: 0.85rem 2rem; border-radius: 2px;
-    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block; cursor: pointer; border: none;
-  }
-  .btn-primary:hover { background: #A83E1E; transform: translateY(-1px); }
-  .btn-outline {
-    border: 1px solid var(--deep); color: var(--deep);
-    padding: 0.85rem 2rem; border-radius: 2px;
-    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em;
-    text-transform: uppercase; text-decoration: none;
-    transition: all 0.2s; display: inline-block;
-  }
-  .btn-outline:hover { background: var(--deep); color: var(--cream); }
-  .hero-stats {
-    position: absolute; bottom: 3rem; right: 4rem;
-    display: flex; gap: 3rem;
-  }
-  .stat { text-align: right; }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 700; color: var(--terracotta);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--warm-gray); margin-top: 0.25rem;
-  }
+/* SERVICES */
+.services-hint{font-size:.82rem;color:var(--warm-gray);margin-bottom:2rem;margin-top:-1.5rem;display:flex;align-items:center;gap:.5rem}
+.services-hint::before{content:'✦';color:var(--terracotta);font-size:.7rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{
+  background:var(--card-bg);border:1px solid rgba(26,18,9,.08);
+  padding:2.5rem 2rem;transition:transform .2s,border-color .2s,box-shadow .2s;cursor:pointer;
+}
+.service-card:hover{transform:translateY(-4px);border-color:var(--terracotta);box-shadow:0 8px 32px rgba(196,80,42,.1)}
+.service-icon{
+  width:48px;height:48px;background:rgba(196,80,42,.1);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.5rem;border-radius:2px;transition:background .2s;
+}
+.service-card:hover .service-icon{background:rgba(196,80,42,.18)}
+.service-icon svg{width:22px;height:22px;stroke:var(--terracotta)}
+.service-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.4rem}
+.service-card-hint{font-size:.73rem;color:var(--terracotta);letter-spacing:.06em;margin-bottom:.75rem;font-weight:500}
+.service-card p{font-size:.88rem;color:var(--warm-gray);line-height:1.7}
+.sub-services{margin-top:1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.sub-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem .75rem;border:1px solid rgba(26,18,9,.07);border-radius:2px;
+  cursor:pointer;transition:background .18s,border-color .18s;background:transparent;
+}
+.sub-item:hover{background:rgba(196,80,42,.05);border-color:rgba(196,80,42,.3)}
+.sub-item-name{font-size:.8rem;color:var(--deep);display:flex;align-items:center;gap:.4rem}
+.sub-item-name::before{content:'›';color:var(--terracotta);font-size:1rem}
+.sub-price{
+  font-size:.78rem;font-weight:600;color:var(--terracotta);
+  background:rgba(196,80,42,.08);padding:.2rem .55rem;border-radius:2px;
+  opacity:0;transform:translateX(6px);transition:opacity .22s,transform .22s;white-space:nowrap;
+}
+.sub-item:hover .sub-price{opacity:1;transform:translateX(0)}
 
-  /* SECTION COMMON */
-  section { padding: 6rem 4rem; }
-  .section-label {
-    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--terracotta); font-weight: 500; margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--terracotta); }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; line-height: 1.1;
-    margin-bottom: 3rem;
-  }
+/* WORK */
+.work{background:var(--light-warm)}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.work-card{background:var(--card-bg);overflow:hidden;border:1px solid rgba(26,18,9,.08);transition:transform .2s}
+.work-card:hover{transform:translateY(-3px)}
+.work-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.work-visual{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;
+  letter-spacing:-.02em;flex-direction:column;gap:.25rem;
+}
+.work-card.featured .work-visual{height:auto;min-height:260px}
+.bg-tc{background:var(--terracotta);color:white}
+.bg-dp{background:var(--deep);color:var(--gold)}
+.bg-gd{background:var(--gold);color:var(--deep)}
+.bg-wm{background:#8B6F47;color:var(--cream)}
+.bg-sg{background:#5A6B57;color:#D4E8D0}
+.bg-sl{background:#4A5568;color:#E2E8F0}
+.bg-rs{background:#8B3A52;color:#FFD6E0}
+.bg-tl{background:#2D6A6A;color:#B2DFDB}
+.bg-in{background:#3D4B8A;color:#C5CAE9}
+.bg-ol{background:#5C6B2E;color:#E8F5C2}
+.bg-mt{background:#6B6560;color:#EDE8DF}
+.work-info{padding:1.5rem 1.75rem 1.75rem}
+.work-category{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:.4rem}
+.work-info h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.5rem}
+.work-info p{font-size:.85rem;color:var(--warm-gray);line-height:1.6}
+.work-result{
+  margin-top:1rem;padding:.75rem 1rem;
+  background:rgba(196,80,42,.07);border-left:2px solid var(--terracotta);
+  font-size:.82rem;color:var(--terracotta);font-weight:500;
+}
+.work-links{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap}
+.work-link{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.75rem;color:var(--warm-gray);text-decoration:none;
+  border:1px solid rgba(26,18,9,.12);padding:.3rem .75rem;border-radius:20px;transition:all .18s;
+}
+.work-link:hover{color:var(--terracotta);border-color:var(--terracotta)}
+.work-link svg{width:12px;height:12px;flex-shrink:0}
+.inactive-badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.7rem;color:var(--warm-gray);background:rgba(139,128,112,.1);
+  padding:.2rem .6rem;border-radius:2px;margin-top:.5rem;
+}
 
-  /* ABOUT */
-  .about { background: var(--deep); color: var(--cream); }
-  .about .section-label { color: var(--gold); }
-  .about .section-label::before { background: var(--gold); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .about-text p {
-    font-size: 1.05rem; line-height: 1.8; color: rgba(245,240,232,0.75);
-    margin-bottom: 1rem;
-  }
-  .about-expertise { margin-top: 2rem; }
-  .expertise-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
-  .tag {
-    padding: 0.45rem 1rem;
-    border: 1px solid rgba(212, 168, 83, 0.3);
-    font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold);
-    border-radius: 1px;
-    cursor: default;
-    transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.18s, box-shadow 0.18s;
-  }
-  .tag:hover {
-    background: var(--gold);
-    color: var(--deep);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(212,168,83,0.25);
-  }
-  .about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .metric-box {
-    background: rgba(245,240,232,0.05);
-    border: 1px solid rgba(245,240,232,0.1);
-    padding: 1.5rem; border-radius: 2px;
-  }
-  .metric-box .num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; font-weight: 700; color: var(--gold);
-  }
-  .metric-box .label {
-    font-size: 0.78rem; color: rgba(245,240,232,0.5);
-    margin-top: 0.25rem; letter-spacing: 0.05em;
-  }
-  .metric-box.featured { background: var(--terracotta); border-color: var(--terracotta); }
-  .metric-box.featured .num { color: white; }
-  .metric-box.featured .label { color: rgba(255,255,255,0.7); }
+/* TOOLS */
+.tools-section{background:var(--cream)}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.tool-card{
+  background:var(--card-bg);border:1px solid rgba(26,18,9,.08);
+  padding:1.4rem 1rem;text-align:center;transition:border-color .2s,transform .2s;
+}
+.tool-card:hover{border-color:var(--terracotta);transform:translateY(-2px)}
+.tool-logo{width:36px;height:36px;margin:0 auto .6rem;display:flex;align-items:center;justify-content:center}
+.tool-logo img{width:36px;height:36px;object-fit:contain;border-radius:6px}
+.tool-card-name{font-size:.82rem;font-weight:500;margin-bottom:.15rem}
+.tool-card-type{font-size:.7rem;color:var(--warm-gray)}
 
-  /* SERVICES */
-  .services-hint {
-    font-size: 0.82rem; color: var(--warm-gray);
-    margin-bottom: 2rem; margin-top: -1.5rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .services-hint::before { content: '✦'; color: var(--terracotta); font-size: 0.7rem; }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .service-card {
-    background: var(--card-bg); border: 1px solid rgba(26,18,9,0.08);
-    padding: 2.5rem 2rem; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .service-card:hover { transform: translateY(-4px); border-color: var(--terracotta); box-shadow: 0 8px 32px rgba(196,80,42,0.1); }
-  .service-icon {
-    width: 48px; height: 48px; background: rgba(196,80,42,0.1);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.5rem; border-radius: 2px;
-    transition: background 0.2s;
-  }
-  .service-card:hover .service-icon { background: rgba(196,80,42,0.18); }
-  .service-icon svg { width: 22px; height: 22px; stroke: var(--terracotta); }
-  .service-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; margin-bottom: 0.4rem;
-  }
-  .service-card-hint {
-    font-size: 0.73rem; color: var(--terracotta); letter-spacing: 0.06em;
-    margin-bottom: 0.75rem; font-weight: 500;
-    display: flex; align-items: center; gap: 0.3rem;
-  }
-  .service-card p { font-size: 0.88rem; color: var(--warm-gray); line-height: 1.7; }
+/* CONTACT */
+.contact{background:var(--deep);color:var(--cream);text-align:center}
+.contact .section-title{color:var(--cream)}
+.contact-sub{font-size:1rem;color:rgba(245,240,232,.6);margin-bottom:3rem}
+.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.contact-link{
+  display:flex;align-items:center;gap:.6rem;
+  padding:1rem 2rem;border:1px solid rgba(245,240,232,.2);
+  color:var(--cream);text-decoration:none;font-size:.88rem;
+  transition:all .2s;border-radius:2px;cursor:pointer;background:none;
+  font-family:'DM Sans',sans-serif;
+}
+.contact-link:hover{border-color:var(--gold);color:var(--gold)}
 
-  /* SUB-SERVICES with price reveal */
-  .sub-services { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .sub-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.55rem 0.75rem;
-    border: 1px solid rgba(26,18,9,0.07);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.18s, border-color 0.18s;
-    position: relative;
-    background: transparent;
-  }
-  .sub-item:hover { background: rgba(196,80,42,0.05); border-color: rgba(196,80,42,0.3); }
-  .sub-item-name {
-    font-size: 0.8rem; color: var(--deep); font-weight: 400;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-  .sub-item-name::before { content: '›'; color: var(--terracotta); font-size: 1rem; }
-  .sub-price {
-    font-size: 0.78rem; font-weight: 600; color: var(--terracotta);
-    background: rgba(196,80,42,0.08);
-    padding: 0.2rem 0.55rem; border-radius: 2px;
-    opacity: 0; transform: translateX(6px);
-    transition: opacity 0.22s, transform 0.22s;
-    white-space: nowrap;
-  }
-  .sub-item:hover .sub-price,
-  .sub-item.revealed .sub-price { opacity: 1; transform: translateX(0); }
+/* FOOTER */
+footer{
+  background:var(--deep);border-top:1px solid rgba(245,240,232,.08);
+  padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;
+  font-size:.78rem;color:rgba(245,240,232,.35);
+}
 
-  /* WORK */
-  .work { background: var(--light-warm); }
-  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .work-card {
-    background: var(--card-bg); overflow: hidden;
-    border: 1px solid rgba(26,18,9,0.08);
-    transition: transform 0.2s;
-  }
-  .work-card:hover { transform: translateY(-3px); }
-  .work-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
-  .work-visual {
-    height: 200px; display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em;
-  }
-  .work-card.featured .work-visual { height: auto; min-height: 260px; }
-  .bg-terracotta { background: var(--terracotta); color: white; }
-  .bg-deep { background: var(--deep); color: var(--gold); }
-  .bg-gold { background: var(--gold); color: var(--deep); }
-  .bg-warm { background: #8B6F47; color: var(--cream); }
-  .bg-sage { background: #5A6B57; color: #D4E8D0; }
-  .work-info { padding: 1.5rem 1.75rem 1.75rem; }
-  .work-category {
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 0.4rem;
-  }
-  .work-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
-  .work-info p { font-size: 0.85rem; color: var(--warm-gray); line-height: 1.6; }
-  .work-result {
-    margin-top: 1rem; padding: 0.75rem 1rem;
-    background: rgba(196,80,42,0.07); border-left: 2px solid var(--terracotta);
-    font-size: 0.82rem; color: var(--terracotta); font-weight: 500;
-  }
+/* MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(26,18,9,.72);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;padding:1rem;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--cream);max-width:480px;width:100%;padding:2.5rem;border-radius:6px;
+  transform:translateY(20px);transition:transform .3s ease;position:relative;
+  max-height:90vh;overflow-y:auto;
+}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{
+  position:absolute;top:1rem;right:1.2rem;background:none;border:none;
+  font-size:1.4rem;cursor:pointer;color:var(--warm-gray);transition:color .2s;
+}
+.modal-close:hover{color:var(--terracotta)}
+.modal-form-view{}
+.modal-success-view{display:none;text-align:center;padding:1.5rem 0}
+.modal.submitted .modal-form-view{display:none}
+.modal.submitted .modal-success-view{display:block}
+.modal-greeting{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:.4rem}
+.modal-greeting em{font-style:italic;color:var(--terracotta)}
+.modal-sub{font-size:.88rem;color:var(--warm-gray);margin-bottom:1.75rem;line-height:1.6}
+.modal-field{margin-bottom:1rem}
+.modal-field label{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-gray);margin-bottom:.4rem}
+.modal-field input,.modal-field textarea,.modal-field select{
+  width:100%;padding:.75rem 1rem;border:1px solid rgba(26,18,9,.15);border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:.9rem;background:white;color:var(--deep);
+  transition:border-color .2s;outline:none;
+}
+.modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--terracotta)}
+.modal-field textarea{resize:vertical;min-height:90px}
+.modal-submit{
+  width:100%;margin-top:.5rem;background:var(--terracotta);color:white;
+  padding:.9rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;
+  font-size:.85rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s,transform .15s;
+}
+.modal-submit:hover{background:#A83E1E;transform:translateY(-1px)}
+/* success */
+.success-icon{font-size:3rem;margin-bottom:1rem}
+.success-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+.success-title em{color:var(--terracotta);font-style:italic}
+.success-msg{font-size:.9rem;color:var(--warm-gray);line-height:1.7;margin-bottom:1.75rem}
+.success-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.success-btn{
+  padding:.7rem 1.5rem;border-radius:2px;font-size:.82rem;font-weight:500;
+  letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;
+  border:none;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;
+}
+.success-btn.primary{background:var(--terracotta);color:white}
+.success-btn.primary:hover{background:#A83E1E}
+.success-btn.outline{background:none;border:1px solid var(--deep);color:var(--deep)}
+.success-btn.outline:hover{background:var(--deep);color:var(--cream)}
 
-  /* SKILLS */
-  .skills-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; }
-  .skill-group { margin-bottom: 2.5rem; }
-  .skill-group-title {
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--warm-gray); margin-bottom: 1rem;
-  }
-  .skill-bar { margin-bottom: 1rem; }
-  .skill-name { font-size: 0.88rem; margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
-  .skill-name span { color: var(--warm-gray); font-size: 0.8rem; }
-  .bar-track { height: 3px; background: rgba(26,18,9,0.1); border-radius: 1px; overflow: hidden; }
-  .bar-fill { height: 100%; background: var(--terracotta); border-radius: 1px; transition: width 1.5s ease; }
-  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .tool-card {
-    background: var(--card-bg); border: 1px solid rgba(26,18,9,0.08);
-    padding: 1.25rem; text-align: center; transition: border-color 0.2s;
-  }
-  .tool-card:hover { border-color: var(--terracotta); }
-  .tool-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .tool-card-name { font-size: 0.82rem; font-weight: 500; }
-  .tool-card-type { font-size: 0.72rem; color: var(--warm-gray); margin-top: 0.2rem; }
+/* PHONE MODAL */
+.phone-modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(26,18,9,.72);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;padding:1rem;
+}
+.phone-modal-overlay.open{opacity:1;pointer-events:all}
+.phone-modal{
+  background:var(--deep);max-width:380px;width:100%;padding:2.5rem;border-radius:6px;
+  transform:translateY(20px) scale(.97);transition:transform .3s ease;
+  position:relative;text-align:center;border:1px solid rgba(212,168,83,.2);
+}
+.phone-modal-overlay.open .phone-modal{transform:translateY(0) scale(1)}
+.phone-modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:rgba(245,240,232,.4);transition:color .2s}
+.phone-modal-close:hover{color:var(--gold)}
+.phone-wave{font-size:2.5rem;margin-bottom:1rem;display:inline-block;animation:wave 1.5s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}25%{transform:rotate(18deg)}75%{transform:rotate(-10deg)}}
+.phone-greeting{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);margin-bottom:.5rem}
+.phone-greeting em{color:var(--gold);font-style:italic}
+.phone-sub{font-size:.85rem;color:rgba(245,240,232,.55);margin-bottom:1.5rem;line-height:1.6}
+.phone-number{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);letter-spacing:.05em;margin-bottom:1.25rem;display:block;text-decoration:none}
+.phone-number:hover{color:white}
+.phone-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--terracotta);color:white;padding:.75rem 1.75rem;border-radius:2px;font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.phone-cta:hover{background:#A83E1E}
 
-  /* CONTACT */
-  .contact { background: var(--deep); color: var(--cream); text-align: center; }
-  .contact .section-title { color: var(--cream); }
-  .contact-sub { font-size: 1rem; color: rgba(245,240,232,0.6); margin-bottom: 3rem; }
-  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-  .contact-link {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 1rem 2rem; border: 1px solid rgba(245,240,232,0.2);
-    color: var(--cream); text-decoration: none; font-size: 0.88rem;
-    transition: all 0.2s; border-radius: 2px;
-  }
-  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
 
-  /* FOOTER */
-  footer {
-    background: var(--deep); border-top: 1px solid rgba(245,240,232,0.08);
-    padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: rgba(245,240,232,0.35);
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(26,18,9,0.7); backdrop-filter: blur(4px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.25s;
-    padding: 1rem;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--cream); max-width: 480px; width: 100%;
-    padding: 2.5rem; border-radius: 4px;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-    position: relative;
-  }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-close {
-    position: absolute; top: 1rem; right: 1.2rem;
-    background: none; border: none; font-size: 1.4rem;
-    cursor: pointer; color: var(--warm-gray);
-    transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--terracotta); }
-  .modal-greeting {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem;
-  }
-  .modal-greeting em { font-style: italic; color: var(--terracotta); }
-  .modal-sub { font-size: 0.88rem; color: var(--warm-gray); margin-bottom: 1.75rem; line-height: 1.6; }
-  .modal-field { margin-bottom: 1rem; }
-  .modal-field label {
-    display: block; font-size: 0.75rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.4rem;
-  }
-  .modal-field input, .modal-field textarea {
-    width: 100%; padding: 0.75rem 1rem;
-    border: 1px solid rgba(26,18,9,0.15); border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-    background: white; color: var(--deep);
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  .modal-field input:focus, .modal-field textarea:focus { border-color: var(--terracotta); }
-  .modal-field textarea { resize: vertical; min-height: 90px; }
-  .modal-submit {
-    width: 100%; margin-top: 0.5rem;
-    background: var(--terracotta); color: white;
-    padding: 0.9rem; border: none; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.07em;
-    text-transform: uppercase; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .modal-submit:hover { background: #A83E1E; transform: translateY(-1px); }
-
-  /* PHONE MODAL */
-  .phone-modal-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(26,18,9,0.7); backdrop-filter: blur(4px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.25s;
-    padding: 1rem;
-  }
-  .phone-modal-overlay.open { opacity: 1; pointer-events: all; }
-  .phone-modal {
-    background: var(--deep); max-width: 380px; width: 100%;
-    padding: 2.5rem; border-radius: 4px;
-    transform: translateY(20px) scale(0.97);
-    transition: transform 0.3s ease;
-    position: relative; text-align: center;
-    border: 1px solid rgba(212,168,83,0.2);
-  }
-  .phone-modal-overlay.open .phone-modal { transform: translateY(0) scale(1); }
-  .phone-modal-close {
-    position: absolute; top: 1rem; right: 1.2rem;
-    background: none; border: none; font-size: 1.4rem;
-    cursor: pointer; color: rgba(245,240,232,0.4);
-    transition: color 0.2s;
-  }
-  .phone-modal-close:hover { color: var(--gold); }
-  .phone-wave { font-size: 2.5rem; margin-bottom: 1rem; animation: wave 1.5s ease-in-out infinite; display: inline-block; }
-  @keyframes wave { 0%,100%{transform:rotate(0)} 25%{transform:rotate(18deg)} 75%{transform:rotate(-10deg)} }
-  .phone-greeting {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; color: var(--cream); margin-bottom: 0.5rem;
-  }
-  .phone-greeting em { color: var(--gold); font-style: italic; }
-  .phone-sub { font-size: 0.85rem; color: rgba(245,240,232,0.55); margin-bottom: 1.5rem; line-height: 1.6; }
-  .phone-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; color: var(--gold); letter-spacing: 0.05em;
-    margin-bottom: 1.25rem; display: block;
-    text-decoration: none;
-  }
-  .phone-number:hover { color: white; }
-  .phone-cta {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--terracotta); color: white;
-    padding: 0.75rem 1.75rem; border-radius: 2px;
-    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s;
-  }
-  .phone-cta:hover { background: #A83E1E; }
-
-  /* ANIMATIONS */
-  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    nav .nav-links { display: none; }
-    section, .hero { padding: 5rem 2rem 3rem; }
-    .hero-stats { display: none; }
-    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-    .services-grid { grid-template-columns: 1fr; }
-    .work-grid { grid-template-columns: 1fr; }
-    .work-card.featured { grid-column: 1; display: block; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .modal, .phone-modal { padding: 1.75rem; }
-  }
+/* RESPONSIVE */
+@media(max-width:1100px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;flex-wrap:wrap;gap:.75rem}
+  .nav-links{display:none}
+  .nav-search input{width:140px}
+  .nav-search input:focus{width:160px}
+  section,.hero{padding:5rem 1.5rem 3rem}
+  .hero-stats{display:none}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .services-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .work-card.featured{grid-column:1;display:block}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.2rem 1.5rem}
+  .hero-bg-text{display:none}
+  .about-visual{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
 
 <!-- CONTACT MODAL -->
 <div class="modal-overlay" id="contactModal">
-  <div class="modal">
+  <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeModal()">&times;</button>
-    <div class="modal-greeting">Hey there, <em>let's talk!</em></div>
-    <p class="modal-sub">Tell me a bit about yourself and what you're working on — I'll get back to you within 24 hours.</p>
-    <div class="modal-field">
-      <label>Your Name</label>
-      <input type="text" id="modalName" placeholder="What should I call you?" />
+    <div class="modal-form-view">
+      <div class="modal-greeting">Hey there, <em>let's talk!</em></div>
+      <p class="modal-sub">Tell me about yourself and your brand — I'll get back within 24 hours.</p>
+      <div class="modal-field">
+        <label>Your Name *</label>
+        <input type="text" id="modalName" placeholder="What should I call you?" />
+      </div>
+      <div class="modal-field">
+        <label>Email Address *</label>
+        <input type="email" id="modalEmail" placeholder="your@email.com" />
+      </div>
+      <div class="modal-field">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" id="modalPhone" placeholder="+91 98765 43210" />
+      </div>
+      <div class="modal-field">
+        <label>Service Interested In</label>
+        <select id="modalService">
+          <option value="">Select a service…</option>
+          <option>Social Media Management</option>
+          <option>Web Development (Shopify / WordPress / Wix)</option>
+          <option>Meta Ads / Google Ads</option>
+          <option>SEO &amp; Content</option>
+          <option>Analytics</option>
+          <option>E-commerce Marketing (Full Package)</option>
+          <option>Other / Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Tell Me About Your Brand</label>
+        <textarea id="modalMsg" placeholder="What does your brand do and what are you looking to achieve?"></textarea>
+      </div>
+      <button class="modal-submit" onclick="submitModal()">Send Message →</button>
     </div>
-    <div class="modal-field">
-      <label>Email Address</label>
-      <input type="email" id="modalEmail" placeholder="your@email.com" />
+    <div class="modal-success-view">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Thanks, <em id="successName">friend</em>!</div>
+      <p class="success-msg">Your message is in my inbox. I'll review your requirements and reach out within <strong>24 hours</strong>. Looking forward to working together!</p>
+      <div class="success-actions">
+        <button class="success-btn primary" onclick="closeModal()">Back to Portfolio</button>
+        <a href="mailto:kumari.ankita39316@gmail.com" class="success-btn outline">Email Directly</a>
+      </div>
     </div>
-    <div class="modal-field">
-      <label>What are you looking for?</label>
-      <textarea id="modalMsg" placeholder="Tell me about your brand and what you need help with…"></textarea>
-    </div>
-    <button class="modal-submit" onclick="submitModal()">Send Message →</button>
   </div>
 </div>
 
@@ -473,7 +408,7 @@
     <button class="phone-modal-close" onclick="closePhoneModal()">&times;</button>
     <div class="phone-wave">👋</div>
     <div class="phone-greeting">Hi, I'm <em>Ankita!</em></div>
-    <p class="phone-sub">I'd love to hear about your brand. Feel free to call or WhatsApp me directly.</p>
+    <p class="phone-sub">I'd love to hear about your brand. Call or WhatsApp me directly.</p>
     <a href="tel:+919999999999" class="phone-number">+91 99999 99999</a>
     <a href="https://wa.me/919999999999" class="phone-cta" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -489,8 +424,13 @@
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
-    <a href="#skills">Skills</a>
+    <a href="#tools">Tools</a>
     <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-search">
+    <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+    <input type="text" id="searchInput" placeholder="Search…" autocomplete="off" oninput="doSearch(this.value)" onfocus="doSearch(this.value)" />
+    <div class="search-dropdown" id="searchDropdown"></div>
   </div>
 </nav>
 
@@ -498,31 +438,18 @@
 <section class="hero" id="home">
   <div class="hero-bg-text">DIGITAL</div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Digital Marketing Executive</div>
-    <h1 class="hero-name">
-      Ankita<br><em>Kumari</em>
-    </h1>
-    <p class="hero-tagline">
-      I help e-commerce brands grow their online presence — through performance campaigns, sharp content, and websites that convert.
-    </p>
+    <div class="hero-eyebrow">Digital Marketer</div>
+    <h1 class="hero-name">Ankita</h1>
+    <p class="hero-tagline">I help brands grow their online presence — through performance campaigns, sharp content, and websites that convert.</p>
     <div class="hero-cta">
       <a href="#work" class="btn-primary">View My Work</a>
       <button class="btn-outline" onclick="openModal()">Get In Touch</button>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">12+</div>
-      <div class="stat-label">Brands Managed</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2+</div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Platforms</div>
-    </div>
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Brands Managed</div></div>
+    <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">CMS Platforms</div></div>
   </div>
 </section>
 
@@ -531,40 +458,31 @@
   <div class="section-label">About Me</div>
   <div class="about-grid">
     <div class="about-text fade-up">
-      <h2 class="section-title" style="color: var(--cream);">I make brands<br><em style="color: var(--gold);">findable & desirable</em></h2>
-      <p>Currently working as a Digital Marketing Executive at Blank Pages, I specialize in helping D2C and e-commerce brands build a strong digital footprint — from ads that perform to websites that work.</p>
-      <p>My background spans social media management, paid campaigns (Google & Meta), SEO, and CMS development across WordPress, Shopify, and Wix.</p>
+      <h2 class="section-title" style="color:var(--cream);">I make brands<br><em style="color:var(--gold);">findable &amp; desirable</em></h2>
+      <p>Currently working as a Digital Marketer at Blank Pages, I specialize in brands build a strong digital footprint — from ads that perform to websites that work.</p>
+      <p>With <strong style="color:var(--gold)">12+ brands</strong> across jewellery, fashion, fragrance, food, furniture, footwear and education under my belt, I bring hands-on experience across the full digital stack.</p>
+      <p>My background spans social media management, paid campaigns (Google &amp; Meta), SEO, and CMS development across WordPress, Shopify, and Wix.</p>
       <div class="about-expertise">
-        <div style="font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-bottom: 0.75rem;">Core Expertise</div>
+        <div style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.4);margin-bottom:.75rem;">Core Expertise</div>
         <div class="expertise-tags">
+          <span class="tag">E-commerce Marketing</span>
           <span class="tag">Social Media Marketing</span>
-          <span class="tag">Google & Meta Ads</span>
+          <span class="tag">Google &amp; Meta Ads</span>
           <span class="tag">SEO</span>
           <span class="tag">Shopify</span>
           <span class="tag">WordPress</span>
-          <span class="tag">Content Strategy</span>
+          <span class="tag">Social Media Mangement</span>
           <span class="tag">Campaign Analytics</span>
-          <span class="tag">E-commerce</span>
+          <span class="tag">Script Writing</span>
+          <span class="tag">Graphics</span>
         </div>
       </div>
     </div>
     <div class="about-visual fade-up">
-      <div class="metric-box featured">
-        <div class="num">12+</div>
-        <div class="label">Brands managed across jewellery, fashion, fragrance, food & more</div>
-      </div>
-      <div class="metric-box">
-        <div class="num">3</div>
-        <div class="label">CMS platforms: WordPress, Shopify, Wix</div>
-      </div>
-      <div class="metric-box">
-        <div class="num">Meta</div>
-        <div class="label">& Google Ads campaigns planned & executed</div>
-      </div>
-      <div class="metric-box">
-        <div class="num">GA4</div>
-        <div class="label">Performance analysis & data-driven reporting</div>
-      </div>
+      <div class="metric-box featured"><div class="num">12+</div><div class="label">Brands managed — jewellery, fashion, fragrance, food, furniture, footwear &amp; education</div></div>
+      <div class="metric-box"><div class="num">3</div><div class="label">CMS platforms: WordPress, Shopify, Wix</div></div>
+      <div class="metric-box"><div class="num">Meta</div><div class="label">&amp; Google Ads campaigns planned &amp; executed</div></div>
+      <div class="metric-box"><div class="num">GA4</div><div class="label">Performance analysis &amp; data-driven reporting</div></div>
     </div>
   </div>
 </section>
@@ -576,139 +494,74 @@
   <p class="services-hint">Hover over any sub-service to reveal pricing</p>
   <div class="services-grid">
 
-    <!-- 1. Social Media Management -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h3>Social Media Management</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
-      <p>End-to-end management of Instagram and Facebook — content calendars, graphics, reels, and community engagement.</p>
+      <p>End-to-end Instagram &amp; Facebook management — content calendars, graphics, reels, and community engagement.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Static Post</span>
-          <span class="sub-price">₹300 / post</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Reel</span>
-          <span class="sub-price">₹500 / reel</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Post Scheduling</span>
-          <span class="sub-price">₹2,000 / month</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Static Post</span><span class="sub-price">₹300 / post</span></div>
+        <div class="sub-item"><span class="sub-item-name">Reel</span><span class="sub-price">₹500 / reel</span></div>
+        <div class="sub-item"><span class="sub-item-name">Post Scheduling</span><span class="sub-price">₹2,000 / month</span></div>
       </div>
     </div>
 
-    <!-- 2. Web Development -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
-      </div>
-      <h3>Web Development & Management</h3>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div>
+      <h3>Web Development &amp; Management</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
       <p>Build and manage e-commerce and brand websites — product pages, landing pages, and ongoing updates.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Shopify</span>
-          <span class="sub-price">₹15,000 basic</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">WordPress</span>
-          <span class="sub-price">₹12,000 basic</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Wix</span>
-          <span class="sub-price">₹300 / complex section</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Shopify</span><span class="sub-price">₹15,000 basic*</span></div>
+        <div class="sub-item"><span class="sub-item-name">WordPress</span><span class="sub-price">₹12,000 basic*</span></div>
+        <div class="sub-item"><span class="sub-item-name">Wix</span><span class="sub-price">₹8,000</span></div>
+        <div class="sub-item"><span class="sub-item-name" style="font-size:.72rem;color:var(--warm-gray)">Complex sections extra</span><span class="sub-price">₹300 / section</span></div>
       </div>
     </div>
 
-    <!-- 3. Social Media Marketing / Ads -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 11l5-5m0 0l5 5m-5-5v12" stroke-linecap="round"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 11l5-5m0 0l5 5m-5-5v12" stroke-linecap="round"/></svg></div>
       <h3>Social Media Marketing</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
-      <p>Google & Meta ad campaigns — from strategy and creative briefing to execution and optimization.</p>
+      <p>Google &amp; Meta ad campaigns — from strategy and creative briefing to execution and optimisation.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Meta Ads</span>
-          <span class="sub-price">₹500 / ad</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Google Ads</span>
-          <span class="sub-price">₹800 / ad (excl. spend)</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Meta Ads</span><span class="sub-price">₹1,000 / ad</span></div>
+        <div class="sub-item"><span class="sub-item-name">Google Ads</span><span class="sub-price">₹1,500 / ad (excl. spend)</span></div>
       </div>
     </div>
 
-    <!-- 4. SEO & Content -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
-      </div>
-      <h3>SEO & Content</h3>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg></div>
+      <h3>SEO &amp; Content</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
       <p>Keyword research, on-page/off-page SEO, and blog writing to drive qualified organic traffic.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Blog Writing</span>
-          <span class="sub-price">₹100 / blog</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">On-Page SEO</span>
-          <span class="sub-price">₹500 / page</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Off-Page SEO</span>
-          <span class="sub-price">₹1,000</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Blog Writing</span><span class="sub-price">₹100 / blog</span></div>
+        <div class="sub-item"><span class="sub-item-name">On-Page SEO</span><span class="sub-price">₹500 / page</span></div>
+        <div class="sub-item"><span class="sub-item-name">Off-Page SEO</span><span class="sub-price">₹1,000</span></div>
       </div>
     </div>
 
-    <!-- 5. Analytics -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3h18v18H3zM3 9h18M9 21V9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 3h18v18H3zM3 9h18M9 21V9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h3>Analytics</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
       <p>Performance tracking and reporting using GA4 and Meta dashboards — turning data into actionable decisions.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Meta Analytics</span>
-          <span class="sub-price">₹1,000 (both platforms)</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">GA4 Reporting</span>
-          <span class="sub-price">₹1,000 (both platforms)</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Meta Analytics</span><span class="sub-price">₹1,000 (both platforms)</span></div>
+        <div class="sub-item"><span class="sub-item-name">GA4 Reporting</span><span class="sub-price">₹1,000 (both platforms)</span></div>
       </div>
     </div>
 
-    <!-- 6. E-commerce Marketing -->
     <div class="service-card fade-up">
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-linecap="round"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-linecap="round"/></svg></div>
       <h3>E-commerce Marketing</h3>
       <div class="service-card-hint">↓ Hover to see prices</div>
-      <p>Full-funnel strategy — web, social, ads, retargeting, Amazon & Flipkart ads, and product listing management.</p>
+      <p>Full-funnel strategy — web, social, ads, retargeting, Amazon &amp; Flipkart ads, and product listing management.</p>
       <div class="sub-services">
-        <div class="sub-item">
-          <span class="sub-item-name">Complete Package</span>
-          <span class="sub-price">₹50,000</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Amazon / Flipkart Ads</span>
-          <span class="sub-price">Included in package</span>
-        </div>
-        <div class="sub-item">
-          <span class="sub-item-name">Product Listing</span>
-          <span class="sub-price">Included in package</span>
-        </div>
+        <div class="sub-item"><span class="sub-item-name">Complete Package</span><span class="sub-price">₹50,000</span></div>
+        <div class="sub-item"><span class="sub-item-name">Amazon / Flipkart Ads</span><span class="sub-price">Included in package</span></div>
+        <div class="sub-item"><span class="sub-item-name">Product Listing</span><span class="sub-price">Included in package</span></div>
       </div>
     </div>
 
@@ -718,136 +571,233 @@
 <!-- WORK -->
 <section class="work" id="work">
   <div class="section-label">Portfolio</div>
-  <h2 class="section-title">Selected Work</h2>
+  <h2 class="section-title">Selected Work <span style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:400;color:var(--warm-gray);">— 12+ brands</span></h2>
   <div class="work-grid">
+
+    <!-- Rugcult FEATURED -->
     <div class="work-card featured fade-up">
-      <div class="work-visual bg-terracotta">Rugcult</div>
+      <div class="work-visual bg-tc">Rugcult</div>
       <div class="work-info">
-        <div class="work-category">E-commerce · Web + Social + Ads</div>
-        <h3>Rugcult — Complete Digital Presence</h3>
-        <p>Managed the full digital stack for a rug brand — built and maintained the Shopify website, ran Meta and Google ad campaigns, and handled Instagram content and community management.</p>
-        <div class="work-result">↑ Website traffic growth through paid + organic channels combined</div>
+        <div class="work-category">Rugs · E-commerce</div>
+        <h3>Rugcult</h3>
+        <p>Managed the full digital stack — Shopify website, Meta and Google ad campaigns, Instagram content and community management.</p>
+        <div class="work-result">E-commerce Website + Social Media + Ads</div>
+        <div class="work-links">
+          <a href="https://rugcult.com/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round"/></svg>rugcult.com</a>
+          <a href="https://www.instagram.com/rugcult.co/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@rugcult.co</a>
+        </div>
       </div>
     </div>
+
+    <!-- Majesty Fusion -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-deep">MF</div>
+      <div class="work-visual bg-dp">MF</div>
       <div class="work-info">
-        <div class="work-category">Fragrance · Social Media</div>
+        <div class="work-category">Perfume · Website + Social + Ads</div>
         <h3>Majesty Fusion</h3>
-        <p>Social media management and marketing for a perfume brand — content creation, reels, and ad campaigns targeting fragrance buyers.</p>
-        <div class="work-result">Ongoing brand growth via Instagram & Meta Ads</div>
+        <p>Website development, social media management, script writing for reels, and ad campaigns for a perfume brand.</p>
+        <div class="work-result">Website + Social Media + Script Writing + Ads</div>
+        <div class="work-links">
+          <a href="https://majestyfusion.com/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round"/></svg>majestyfusion.com</a>
+          <a href="https://www.instagram.com/majestyfusion_official/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@majestyfusion_official</a>
+        </div>
       </div>
     </div>
+
+    <!-- Apidear -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-gold">SJ</div>
+      <div class="work-visual bg-gd">Apidear</div>
       <div class="work-info">
-        <div class="work-category">Jewellery · Web + Social</div>
-        <h3>Shumara Jewels</h3>
-        <p>Website management and Instagram content strategy for a jewellery brand targeting women shoppers across India.</p>
-        <div class="work-result">Consistent content calendar with visual brand identity</div>
-      </div>
-    </div>
-    <div class="work-card fade-up">
-      <div class="work-visual bg-warm">Apidear</div>
-      <div class="work-info">
-        <div class="work-category">Food & Wellness · Web + Social</div>
+        <div class="work-category">Honey · Web + Social + SEO + Ads</div>
         <h3>Apidear Honey</h3>
-        <p>Built and managed the website alongside organic social media content for a premium honey brand focusing on health-conscious consumers.</p>
-        <div class="work-result">Website + social presence built from ground up</div>
+        <p>Website, organic social content, SEO blog writing, and ad campaigns for a premium honey brand.</p>
+        <div class="work-result">Website + Social Media + Blogs + SEO + Ads</div>
+        <div class="work-links">
+          <a href="https://www.instagram.com/apidear.com_/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@apidear.com_</a>
+        </div>
       </div>
     </div>
+
+    <!-- Indra Sugandh -->
     <div class="work-card fade-up">
-      <div class="work-visual bg-sage" style="font-size: 1.8rem;">Blank<br>Pages</div>
+      <div class="work-visual bg-rs" style="font-size:1.5rem;">Indra<br>Sugandh</div>
       <div class="work-info">
-        <div class="work-category">Agency · Multi-channel</div>
-        <h3>Blank Pages (Current Role)</h3>
-        <p>Full-service digital marketing execution for an agency managing multiple e-commerce clients — campaigns, social, SEO, and website management.</p>
-        <div class="work-result">Managing 12+ client accounts simultaneously</div>
+        <div class="work-category">Fragrance · Website + Social + Ads</div>
+        <h3>Indra Sugandh Bhandar</h3>
+        <p>Website development, social media management, and ad campaigns for a traditional Indian fragrance brand.</p>
+        <div class="work-result">Website + Social Media + Ads</div>
+        <div class="work-links">
+          <a href="https://indrasugandh.com/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round"/></svg>indrasugandh.com</a>
+          <a href="https://www.instagram.com/indrasugandh_official/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@indrasugandh_official</a>
+        </div>
       </div>
     </div>
+
+    <!-- Tokyo Sole -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-sl" style="font-size:1.5rem;">Tokyo<br>Sole</div>
+      <div class="work-info">
+        <div class="work-category">Shoes · Website + Social + Ads</div>
+        <h3>Tokyo Sole</h3>
+        <p>Website development, Instagram content strategy, and performance ad campaigns for a contemporary footwear brand.</p>
+        <div class="work-result">Website + Social Media + Ads</div>
+        <div class="work-links">
+          <a href="https://tokyosole.com/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round"/></svg>tokyosole.com</a>
+          <a href="https://www.instagram.com/tokyosole.official/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@tokyosole.official</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Furnishing Touch -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-wm" style="font-size:1.4rem;">Furnishing<br>Touch</div>
+      <div class="work-info">
+        <div class="work-category">Furnishing · B2B &amp; B2C</div>
+        <h3>Furnishing Touch</h3>
+        <p>Social media management, pamphlet design, and Google Ads for a B2B &amp; B2C furnishing brand.</p>
+        <div class="work-result">Social Media + Pamphlet Design + Google Ads</div>
+        <div class="work-links">
+          <a href="https://www.instagram.com/furnishing.touch/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@furnishing.touch</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Halxi -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-tl">Halxi</div>
+      <div class="work-info">
+        <div class="work-category">Website Development</div>
+        <h3>Halxi</h3>
+        <p>End-to-end website development — building a clean, functional web presence for the brand's digital launch.</p>
+        <div class="work-result">Website</div>
+        <div class="work-links">
+          <a href="https://halxi.com/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round"/></svg>halxi.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Merak Home -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-in" style="font-size:1.4rem;">Merak<br>Home</div>
+      <div class="work-info">
+        <div class="work-category">Bedsheets · Social Media + Ads</div>
+        <h3>Merak Home Furnishing</h3>
+        <p>Social media management and ad campaigns for a premium bedsheet brand targeting quality-conscious home buyers.</p>
+        <div class="work-result">Social Media + Ads</div>
+        <div class="work-links">
+          <a href="https://www.instagram.com/merak_home_furnishing/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@merak_home_furnishing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Koed -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-ol">Koed</div>
+      <div class="work-info">
+        <div class="work-category">Education · Ads + Script Writing</div>
+        <h3>Koed — University / PhD Education</h3>
+        <p>Ad campaigns and script writing for an education platform targeting university and PhD aspirants.</p>
+        <div class="work-result">Ads + Script Writing</div>
+      </div>
+    </div>
+
+    <!-- Inactive Websites grouped -->
+    <div class="work-card fade-up">
+      <div class="work-visual bg-mt" style="font-size:1.1rem;flex-direction:column;gap:.4rem;">
+        <span>Shumara Jewels</span>
+        <span style="font-size:.85rem;opacity:.6">Svayanirah · Faxi</span>
+      </div>
+      <div class="work-info">
+        <div class="work-category">Jewellery · Perfume · Clothing</div>
+        <h3>Website Projects (Inactive)</h3>
+        <p>Website development and social media for Shumara Jewels (jewellery), Svayanirah (perfume), and Faxi (clothing). Websites delivered and currently inactive.</p>
+        <div class="inactive-badge">⚠ Websites currently inactive</div>
+        <div class="work-result">Shumara: Website + Social &nbsp;|&nbsp; Svayanirah &amp; Faxi: Website</div>
+        <div class="work-links">
+          <a href="https://www.instagram.com/shumarajewels.official/" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@shumarajewels.official</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">Capabilities</div>
-  <h2 class="section-title">Skills & Tools</h2>
-  <div class="skills-layout">
-    <div class="fade-up">
-      <div class="skill-group">
-        <div class="skill-group-title">Marketing</div>
-        <div class="skill-bar">
-          <div class="skill-name">Social Media Marketing <span>Advanced</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 90%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">Meta Ads (Facebook/Instagram) <span>Intermediate</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">Google Ads <span>Intermediate</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">SEO <span>Intermediate</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 68%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">Content & Blog Writing <span>Advanced</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 85%"></div></div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Web & Development</div>
-        <div class="skill-bar">
-          <div class="skill-name">Shopify <span>Advanced</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 85%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">WordPress <span>Advanced</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 82%"></div></div>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-name">Wix <span>Intermediate</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width: 72%"></div></div>
-        </div>
-      </div>
+<!-- TOOLS & SOFTWARE -->
+<section class="tools-section" id="tools">
+  <div class="section-label">Tech Stack</div>
+  <h2 class="section-title">Tools &amp; Software</h2>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=shopify.com&sz=64" alt="Shopify"/></div>
+      <div class="tool-card-name">Shopify</div><div class="tool-card-type">E-commerce CMS</div>
     </div>
-    <div class="fade-up">
-      <div class="skill-group-title" style="margin-bottom: 1rem;">Tools & Software</div>
-      <div class="tools-grid">
-        <div class="tool-card"><div class="tool-card-icon">📊</div><div class="tool-card-name">Google Analytics 4</div><div class="tool-card-type">Analytics</div></div>
-        <div class="tool-card"><div class="tool-card-icon">📣</div><div class="tool-card-name">Meta Business Manager</div><div class="tool-card-type">Paid Social</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🔍</div><div class="tool-card-name">Google Ads</div><div class="tool-card-type">Paid Search</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🎨</div><div class="tool-card-name">Canva</div><div class="tool-card-type">Design</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🖌️</div><div class="tool-card-name">Adobe Suite</div><div class="tool-card-type">Design</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🤖</div><div class="tool-card-name">AI Content Tools</div><div class="tool-card-type">Productivity</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🔑</div><div class="tool-card-name">Keyword Research Tools</div><div class="tool-card-type">SEO</div></div>
-        <div class="tool-card"><div class="tool-card-icon">🛍️</div><div class="tool-card-name">Shopify Admin</div><div class="tool-card-type">E-commerce</div></div>
-        <div class="tool-card"><div class="tool-card-icon">📝</div><div class="tool-card-name">WordPress</div><div class="tool-card-type">CMS</div></div>
-      </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=ads.google.com&sz=64" alt="Google Ads"/></div>
+      <div class="tool-card-name">Google Ads</div><div class="tool-card-type">Paid Search</div>
     </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=business.facebook.com&sz=64" alt="Meta"/></div>
+      <div class="tool-card-name">Meta Business Suite</div><div class="tool-card-type">Paid Social</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=analytics.google.com&sz=64" alt="GA4"/></div>
+      <div class="tool-card-name">Google Analytics 4</div><div class="tool-card-type">Analytics</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=wordpress.org&sz=64" alt="WordPress"/></div>
+      <div class="tool-card-name">WordPress</div><div class="tool-card-type">CMS</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=wix.com&sz=64" alt="Wix"/></div>
+      <div class="tool-card-name">Wix</div><div class="tool-card-type">Website Builder</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva"/></div>
+      <div class="tool-card-name">Canva</div><div class="tool-card-type">Design</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=64" alt="Adobe"/></div>
+      <div class="tool-card-name">Adobe Suite</div><div class="tool-card-type">Design</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=search.google.com&sz=64" alt="Search Console"/></div>
+      <div class="tool-card-name">Search Console</div><div class="tool-card-type">SEO</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=semrush.com&sz=64" alt="SEMrush"/></div>
+      <div class="tool-card-name">SEMrush</div><div class="tool-card-type">SEO &amp; Keywords</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=instagram.com&sz=64" alt="Instagram"/></div>
+      <div class="tool-card-name">Instagram</div><div class="tool-card-type">Social Media</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=64" alt="AI Tools"/></div>
+      <div class="tool-card-name">AI Content Tools</div><div class="tool-card-type">Productivity</div>
+    </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="section-label" style="justify-content: center; color: var(--gold);">
-    <span style="background: var(--gold); width: 1.5rem; height: 1px; display: inline-block;"></span>
+  <div class="section-label" style="justify-content:center;color:var(--gold);">
+    <span style="background:var(--gold);width:1.5rem;height:1px;display:inline-block;"></span>
     Get In Touch
   </div>
-  <h2 class="section-title">Let's work<br><em style="color: var(--gold);">together</em></h2>
+  <h2 class="section-title">Let's work<br><em style="color:var(--gold);">together</em></h2>
   <p class="contact-sub">Open to full-time roles, freelance projects, and consulting.<br>I work with e-commerce and D2C brands across categories.</p>
   <div class="contact-links">
     <a href="mailto:kumari.ankita39316@gmail.com" class="contact-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      kumari.ankita39316@gmail.com
+      Email Me
     </a>
-    <button class="contact-link" onclick="openModal()" style="background:none; cursor:pointer;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    <button class="contact-link" onclick="openModal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       Send a Message
     </button>
-    <button class="contact-link" onclick="openPhoneModal()" style="background:none; cursor:pointer;">
+    <button class="contact-link" onclick="openPhoneModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" stroke-linecap="round"/></svg>
       Call / WhatsApp
     </button>
@@ -861,61 +811,110 @@
 <!-- FOOTER -->
 <footer>
   <span>© 2025 Ankita Kumari</span>
-  <span>Digital Marketing Executive · Delhi</span>
+  <span>Digital Marketer · Delhi</span>
 </footer>
 
 <script>
-  // Fade-up observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// Fade up
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  // Skill bars
-  const fills = document.querySelectorAll('.bar-fill');
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.style.width = e.target.style.width; });
-  }, { threshold: 0.5 });
-  fills.forEach(f => { const w = f.style.width; f.style.width = '0'; setTimeout(() => f.style.width = w, 300); barObserver.observe(f); });
+// ── CONTACT MODAL ──
+let formSubmitted = false;
 
-  // Contact modal
-  function openModal() {
-    document.getElementById('contactModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('contactModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function submitModal() {
-    const name = document.getElementById('modalName').value.trim();
-    const email = document.getElementById('modalEmail').value.trim();
-    if (!name) { document.getElementById('modalName').focus(); return; }
-    if (!email) { document.getElementById('modalEmail').focus(); return; }
-    closeModal();
-    alert('Thanks ' + name + '! I\'ll get back to you within 24 hours. 🙌');
-  }
-  document.getElementById('contactModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+function openModal() {
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // if form was submitted show success; else form (already cleared)
+  const box = document.getElementById('modalBox');
+  if(!formSubmitted) box.classList.remove('submitted');
+}
+function closeModal() {
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function submitModal() {
+  const nameEl = document.getElementById('modalName');
+  const emailEl = document.getElementById('modalEmail');
+  nameEl.style.borderColor = '';
+  emailEl.style.borderColor = '';
+  if(!nameEl.value.trim()){ nameEl.style.borderColor='var(--terracotta)'; nameEl.focus(); return; }
+  if(!emailEl.value.trim() || !emailEl.value.includes('@')){ emailEl.style.borderColor='var(--terracotta)'; emailEl.focus(); return; }
+  document.getElementById('successName').textContent = nameEl.value.trim();
+  document.getElementById('modalBox').classList.add('submitted');
+  formSubmitted = true;
+  // clear all fields immediately so they won't be pre-filled next time
+  ['modalName','modalEmail','modalPhone','modalService','modalMsg'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
   });
+}
+document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
 
-  // Phone modal
-  function openPhoneModal() {
-    document.getElementById('phoneModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePhoneModal() {
-    document.getElementById('phoneModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('phoneModal').addEventListener('click', function(e) {
-    if (e.target === this) closePhoneModal();
-  });
+// ── PHONE MODAL ──
+function openPhoneModal(){ document.getElementById('phoneModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closePhoneModal(){ document.getElementById('phoneModal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('phoneModal').addEventListener('click', function(e){ if(e.target===this) closePhoneModal(); });
 
-  // Close modals on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeModal(); closePhoneModal(); }
-  });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closePhoneModal();} });
+
+// ── SEARCH ──
+const searchIndex = [
+  {label:'About Me',cat:'Section',href:'#about'},
+  {label:'Services',cat:'Section',href:'#services'},
+  {label:'Selected Work',cat:'Section',href:'#work'},
+  {label:'Tools & Software',cat:'Section',href:'#tools'},
+  {label:'Contact',cat:'Section',href:'#contact'},
+  {label:'Shopify Website — ₹15,000',cat:'Service',href:'#services'},
+  {label:'WordPress Website — ₹12,000',cat:'Service',href:'#services'},
+  {label:'Wix Website — ₹8,000',cat:'Service',href:'#services'},
+  {label:'Meta Ads — ₹1,000/ad',cat:'Service',href:'#services'},
+  {label:'Google Ads — ₹1,500/ad',cat:'Service',href:'#services'},
+  {label:'Social Media Management',cat:'Service',href:'#services'},
+  {label:'SEO & Content',cat:'Service',href:'#services'},
+  {label:'Blog Writing — ₹100/blog',cat:'Service',href:'#services'},
+  {label:'E-commerce Marketing',cat:'Service',href:'#services'},
+  {label:'Analytics / GA4',cat:'Service',href:'#services'},
+  {label:'Rugcult — Rugs',cat:'Brand',href:'#work'},
+  {label:'Majesty Fusion — Perfume',cat:'Brand',href:'#work'},
+  {label:'Apidear — Honey',cat:'Brand',href:'#work'},
+  {label:'Indra Sugandh Bhandar — Fragrance',cat:'Brand',href:'#work'},
+  {label:'Tokyo Sole — Shoes',cat:'Brand',href:'#work'},
+  {label:'Furnishing Touch — Furnishing',cat:'Brand',href:'#work'},
+  {label:'Halxi',cat:'Brand',href:'#work'},
+  {label:'Merak Home Furnishing — Bedsheets',cat:'Brand',href:'#work'},
+  {label:'Koed — Education',cat:'Brand',href:'#work'},
+  {label:'Shumara Jewels',cat:'Brand',href:'#work'},
+  {label:'Svayanirah — Perfume',cat:'Brand',href:'#work'},
+  {label:'Faxi — Clothing',cat:'Brand',href:'#work'},
+  {label:'Email',cat:'Contact',href:'mailto:kumari.ankita39316@gmail.com'},
+  {label:'Get In Touch / Message',cat:'Contact',href:'#contact'},
+  {label:'Call / WhatsApp',cat:'Contact',href:'#contact'},
+];
+
+function doSearch(q) {
+  const dd = document.getElementById('searchDropdown');
+  q = q.trim().toLowerCase();
+  if(!q){ dd.classList.remove('open'); dd.innerHTML=''; return; }
+  const results = searchIndex.filter(item => item.label.toLowerCase().includes(q)).slice(0,8);
+  if(!results.length){
+    dd.innerHTML = '<div class="search-empty">No results found</div>';
+  } else {
+    dd.innerHTML = results.map(r =>
+      `<a class="search-item" href="${r.href}" onclick="clearSearch()">${r.label}<span class="search-item-cat">${r.cat}</span></a>`
+    ).join('');
+  }
+  dd.classList.add('open');
+}
+function clearSearch(){
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchDropdown').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if(!e.target.closest('.nav-search')) document.getElementById('searchDropdown').classList.remove('open');
+});
 </script>
 </body>
 </html>
