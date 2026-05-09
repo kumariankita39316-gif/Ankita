@@ -24,7 +24,8 @@ nav{
   border-bottom:1px solid rgba(196,80,42,0.15);
 }
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;flex-shrink:0}
-.nav-links{display:flex;gap:2rem;flex-shrink:0}
+/* CHANGE 1: center nav-links on desktop using absolute positioning */
+.nav-links{display:flex;gap:2rem;flex-shrink:0;position:absolute;left:50%;transform:translateX(-50%)}
 .nav-links a{font-size:0.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--warm-gray);transition:color .2s}
 .nav-links a:hover{color:var(--terracotta)}
 /* search — always on the right */
@@ -176,12 +177,14 @@ section{padding:6rem 4rem;width:100%;overflow:hidden}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-/* mobile drawer */
+
+/* CHANGE 2: mobile drawer — left-aligned */
 .mobile-menu{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:290;
   background:rgba(245,240,232,.98);backdrop-filter:blur(16px);
-  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  flex-direction:column;align-items:flex-start;justify-content:center;gap:2.5rem;
   opacity:0;pointer-events:none;transition:opacity .3s;
+  padding-left:2.5rem;
 }
 .mobile-menu.open{opacity:1;pointer-events:all}
 .mobile-menu a{
@@ -507,7 +510,8 @@ footer{
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Brands Managed</div></div>
-    <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+    <!-- CHANGE 3: Updated from 2+ Years to 1+ Year -->
+    <div class="stat"><div class="stat-num">1+</div><div class="stat-label">Year Experience</div></div>
     <div class="stat"><div class="stat-num">3</div><div class="stat-label">CMS Platforms</div></div>
   </div>
 </section>
