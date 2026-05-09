@@ -844,7 +844,7 @@ footer{
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" stroke-linecap="round"/></svg>
       Call / WhatsApp
     </button>
-    <a href="#" class="contact-link">
+    <a href="https://www.linkedin.com/in/ankita-kumari-441668280" class="contact-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       LinkedIn
     </a>
@@ -893,20 +893,44 @@ function closeModal() {
   document.getElementById('contactModal').classList.remove('open');
   document.body.style.overflow = '';
 }
-function submitModal() {
+async function submitModal() {
   const nameEl = document.getElementById('modalName');
   const emailEl = document.getElementById('modalEmail');
   nameEl.style.borderColor = '';
   emailEl.style.borderColor = '';
   if(!nameEl.value.trim()){ nameEl.style.borderColor='var(--terracotta)'; nameEl.focus(); return; }
   if(!emailEl.value.trim() || !emailEl.value.includes('@')){ emailEl.style.borderColor='var(--terracotta)'; emailEl.focus(); return; }
-  document.getElementById('successName').textContent = nameEl.value.trim();
-  document.getElementById('modalBox').classList.add('submitted');
-  formSubmitted = true;
-  ['modalName','modalEmail','modalPhone','modalService','modalMsg'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.value = '';
-  });
+  const btn = document.querySelector('.modal-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  const data = {
+    name: nameEl.value.trim(),
+    email: document.getElementById('modalEmail').value.trim(),
+    phone: document.getElementById('modalPhone').value.trim(),
+    service: document.getElementById('modalService').value,
+    message: document.getElementById('modalMsg').value.trim()
+  };
+  try {
+    const res = await fetch('https://formspree.io/f/xeenrdpd', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if(res.ok) {
+      document.getElementById('successName').textContent = data.name;
+      document.getElementById('modalBox').classList.add('submitted');
+      formSubmitted = true;
+      ['modalName','modalEmail','modalPhone','modalService','modalMsg'].forEach(id => {
+        const el = document.getElementById(id); if(el) el.value = '';
+      });
+    } else {
+      alert('Something went wrong. Please email me directly.');
+    }
+  } catch(err) {
+    alert('Could not send. Please email me directly.');
+  }
+  btn.textContent = 'Send Message →';
+  btn.disabled = false;
 }
 document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
 
